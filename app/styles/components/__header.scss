@@ -1,0 +1,77 @@
+.header {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 1px 1px;
+
+  .section-container {
+    @include flex;
+    max-width: 1400px;
+    margin-top: 0;
+    padding-top: 13px;
+    padding-bottom: 15px;
+  }
+}
+
+.logo {
+  user-select: none;
+  display: inline-block;
+  background-color: $dark-green;
+  padding: 5px 7px;
+  border-radius: 2px;
+
+  &-text {
+    font-size: 28px;
+    line-height: 36px;
+    color: $white;
+  }
+}
+
+.nav {
+  @include flex;
+  gap: 35px;
+
+  @include responsive-medium {
+    gap: 20px;
+  }
+
+  &-list {
+    @include flex(space-between);
+    gap: 20px;
+
+    @include responsive-medium {
+      gap: 13px;
+    }
+
+    @include responsive-small {
+    }
+  }
+
+  &-link {
+    @include flex;
+    user-select: none;
+    flex-direction: column;
+    color: $dark-green;
+
+    &:hover {
+      color: $green-hover;
+    }
+
+    &__icon {
+      font-size: 26px;
+    }
+
+    &__text {
+      font-size: 14.7px;
+
+      @include responsive-small {
+        display: none;
+      }
+    }
+  }
+
+  .button-primary {
+    min-width: 82px;
+
+    @include responsive-medium {
+      min-width: fit-content;
+    }
+  }
+}

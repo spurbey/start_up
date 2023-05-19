@@ -1,0 +1,65 @@
+.button {
+  border: none;
+  outline: hidden;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: inherit;
+  background-color: $dark-pink;
+  text-decoration: none;
+  color: $white;
+  padding: 0 8px;
+  min-width: 110px;
+  width: 100%;
+  max-width: fit-content;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 7px;
+  height: 45px;
+  @include flex(center, center);
+  display: inline-flex;
+  gap: 7px;
+
+  & > svg {
+    width: 27px;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  @include responsive-medium {
+    min-width: 90px;
+    font-size: 16px;
+  }
+}
+
+.icon {
+  min-width: 0 !important;
+}
+
+.button-primary {
+  @extend .button;
+  background-color: $dark-pink;
+
+  &:hover {
+    background-color: $dark-pink-hover;
+  }
+
+  &:active {
+    background-color: $pink;
+  }
+}
+
+.button-secondary {
+  @extend .button;
+  background-color: $green;
+
+  &:hover {
+    background-color: $green-hover;
+  }
+
+  &:active {
+    background-color: $yellow;
+    color: $black;
+  }
+}
