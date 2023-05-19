@@ -1,1 +1,21 @@
-// styles for home page
+.home-page {
+  text-align: center;
+  margin-top: 20px;
+
+  h1 {
+    margin-bottom: 50px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .container {
+    @include flex(center, center);
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .button-container {
+    @include flex();
+    gap: 20px;
+  }
+}

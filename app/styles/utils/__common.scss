@@ -1,6 +1,6 @@
 // general styles
 
-$global-transition: 150ms color linear, 200ms background-color ease-in-out,
+$global-transition: 60ms color linear, 150ms background-color ease-in-out,
   150ms width linear, 200ms border-color linear, transform 200ms linear,
   margin 220ms linear, 150ms opacity linear;
 
@@ -8,9 +8,10 @@ $global-transition: 150ms color linear, 200ms background-color ease-in-out,
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: $global-transition;
 
   &::selection {
-    background-color: $primary-color;
+    background-color: $dark-pink;
     color: $white;
   }
 }
@@ -23,9 +24,8 @@ h1,
 h2,
 h3,
 h4 {
-  // font-family: ;
   font-weight: 700;
-  color: $dark;
+  color: $black;
 }
 
 body {
@@ -33,7 +33,6 @@ body {
   height: 100vh;
   font-size: 18px;
   line-height: 24px;
-  // font-family: ;
 
   @include responsive_small {
     font-size: 16px;
@@ -48,28 +47,9 @@ img {
 ul {
   margin: 0;
   padding: 0;
-}
-
-li {
   list-style: none;
 }
 
 a {
   text-decoration: none;
 }
-
-.noselect {
-  user-select: none;
-}
-
-/*
-// preloader
-#preloader {
-  background: $primary-color url(../img/loading.svg) no-repeat center center;
-  background-size: 10%;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  z-index: 100;
-}
-*/
