@@ -34,7 +34,7 @@ body {
   font-size: 18px;
   line-height: 24px;
 
-  @include responsive_small {
+  @include responsive-small {
     font-size: 16px;
   }
 }
@@ -52,4 +52,14 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+.section-container {
+  max-width: 1300px;
+  margin: 10px auto;
+  padding: 5px 25px;
+
+  @include responsive-small {
+    padding: 15px 10px;
+  }
 }

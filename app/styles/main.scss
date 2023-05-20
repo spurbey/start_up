@@ -6,9 +6,8 @@
 
 // components
 @import './components/_button';
-
-// sections
-@import './layouts/_header';
+@import './components/_header';
+@import './components/_notification';
 
 // pages
 @import './pages/_home';
