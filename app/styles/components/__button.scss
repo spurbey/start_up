@@ -19,7 +19,8 @@
   display: inline-flex;
   gap: 7px;
 
-  & > svg {
+  & > svg,
+  & > img {
     width: 27px;
   }
 
@@ -61,5 +62,45 @@
   &:active {
     background-color: $yellow;
     color: $black;
+  }
+}
+
+.dropdown {
+  display: inline-block;
+
+  & > button {
+    transform: translateY(0) !important;
+  }
+
+  .active {
+    border-radius: 7px 7px 0 0;
+  }
+
+  &-options {
+    @include flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px 0 10px 0;
+
+    border-radius: 0 0 7px 7px;
+
+    &-primary {
+      background-color: $pink;
+      color: $white;
+    }
+    &-secondary {
+      background-color: $yellow;
+      color: $black;
+    }
+  }
+
+  .option {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
