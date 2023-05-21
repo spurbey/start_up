@@ -1,4 +1,5 @@
 .header {
+  width: 100%;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 1px 1px;
 
   .section-container {
@@ -73,5 +74,21 @@
     @include responsive-medium {
       min-width: fit-content;
     }
+  }
+}
+
+.nav-link__general {
+  text-transform: capitalize;
+  font-size: 20px;
+  line-height: 28px;
+  color: $black;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include responsive-medium {
+    font-size: 18px;
+    line-height: 26px;
   }
 }

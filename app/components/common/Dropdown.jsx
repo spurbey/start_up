@@ -10,18 +10,14 @@ import { BsCaretDownFill, BsCaretUpFill } from 'react-icons/bs';
 - separate style file for dropdown component
 */
 
-export default function DropDown({
-  options = [],
-  color = 'primary',
-  children,
-}) {
+export default function DropDown({ options = [], type = 'primary', children }) {
   const [showOptions, setShowOptions] = useState(false);
 
   return (
     <>
       <div className='dropdown'>
         <button
-          className={`button-${color} ${showOptions && 'active'}`}
+          className={`button button-${type} ${showOptions && 'active'}`}
           onClick={() => setShowOptions(!showOptions)}
         >
           {showOptions ? <BsCaretUpFill /> : <BsCaretDownFill />}
@@ -29,7 +25,7 @@ export default function DropDown({
         </button>
 
         {showOptions ? (
-          <ul className={`dropdown-options dropdown-options-${color}`}>
+          <ul className={`dropdown-options dropdown-options-${type}`}>
             {options.map((option, idx) => (
               <li key={idx} className='option'>
                 {option}

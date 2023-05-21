@@ -10,8 +10,9 @@ export default function HomePage() {
           requested to join club_name/organization_name
         </Notification>
 
+        {/* 
         <Dropdown
-          // color='secondary'
+          type='secondary'
           options={[
             'Humane',
             'SocietyGlobal',
@@ -27,6 +28,7 @@ export default function HomePage() {
         >
           JOINED CLUB/ORGANIZATION
         </Dropdown>
+        */}
       </div>
     </>
   );

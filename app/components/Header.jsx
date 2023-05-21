@@ -1,63 +1,146 @@
+'use client';
+
 // react-icons
 import { AiFillHome, AiOutlineShoppingCart } from 'react-icons/ai';
 import { MdNotifications } from 'react-icons/md';
 import { BiDollar } from 'react-icons/bi';
-import { FaUser } from 'react-icons/fa';
+import { BsChatDotsFill } from 'react-icons/bs';
+import { FaUser, FaUserFriends } from 'react-icons/fa';
 
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
-export default function Header() {
+function Logo() {
+  return (
+    <Link className='logo' href={'/'}>
+      <h3 className='logo-text'>S_</h3>
+    </Link>
+  );
+}
+
+function UserAuth() {
   return (
     <>
-      <header className='header'>
-        <div className='section-container'>
-          <Link className='logo' href={'/'}>
-            <h3 className='logo-text'>S_</h3>
+      <Link className='button-primary' href={'login'}>
+        Login
+      </Link>
+
+      {/* if user is logedin */}
+      {/*
+      <Link href={'user'} className='button-primary icon'>
+        <FaUser />
+      </Link>
+      */}
+    </>
+  );
+}
+
+function GeneralNavigation() {
+  return (
+    <nav className='nav'>
+      <Link href={'/about'} className='nav-link__general'>
+        about us
+      </Link>
+    </nav>
+  );
+}
+
+function OranizationNavigation() {
+  return (
+    <nav className='nav'>
+      <ul className='nav-list'>
+        <li className='nav-item'>
+          <Link href={'/'} className='nav-link'>
+            <AiFillHome className='nav-link__icon' />
+            <span className='nav-link__text'>Home</span>
           </Link>
-          {/* /logo */}
+        </li>
+        <li className='nav-item'>
+          <Link href={'notification'} className='nav-link'>
+            <MdNotifications className='nav-link__icon' />
+            <span className='nav-link__text'>Notification</span>
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link href={'cart'} className='nav-link'>
+            <AiOutlineShoppingCart className='nav-link__icon' />
+            <span className='nav-link__text'>Event Cart</span>
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link href={'bid'} className='nav-link'>
+            <BiDollar className='nav-link__icon' />
+            <span className='nav-link__text'>Event Bid</span>
+          </Link>
+        </li>
+      </ul>
 
-          <nav className='nav'>
-            <ul className='nav-list'>
-              <li className='nav-item'>
-                <Link href={'/'} className='nav-link'>
-                  <AiFillHome className='nav-link__icon' />
-                  <span className='nav-link__text'>Home</span>
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link href={'notification'} className='nav-link'>
-                  <MdNotifications className='nav-link__icon' />
-                  <span className='nav-link__text'>Notification</span>
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link href={'cart'} className='nav-link'>
-                  <AiOutlineShoppingCart className='nav-link__icon' />
-                  <span className='nav-link__text'>Event Cart</span>
-                </Link>
-              </li>
-              <li className='nav-item'>
-                <Link href={'bid'} className='nav-link'>
-                  <BiDollar className='nav-link__icon' />
-                  <span className='nav-link__text'>Event Bid</span>
-                </Link>
-              </li>
-            </ul>
+      <UserAuth />
+    </nav>
+  );
+}
 
-            <Link className='button-primary' href={'login'}>
-              Login
-            </Link>
+function ClubNavigation() {
+  return (
+    <nav className='nav'>
+      <ul className='nav-list'>
+        <li className='nav-item'>
+          <Link href={'/'} className='nav-link'>
+            <AiFillHome className='nav-link__icon' />
+            <span className='nav-link__text'>Home</span>
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link href={'notification/'} className='nav-link'>
+            <MdNotifications className='nav-link__icon' />
+            <span className='nav-link__text'>Notification</span>
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link href={'collaboration/'} className='nav-link'>
+            <FaUserFriends className='nav-link__icon' />
+            <span className='nav-link__text'>Collaboration</span>
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link href={'chat/'} className='nav-link'>
+            <BsChatDotsFill className='nav-link__icon' />
+            <span className='nav-link__text'>Chat</span>
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link href={'bid/'} className='nav-link'>
+            <BiDollar className='nav-link__icon' />
+            <span className='nav-link__text'>Event Bid</span>
+          </Link>
+        </li>
+      </ul>
 
-            {/* if user is logedin */}
-            {/*
-            <Link href={'user'} className='button-primary icon'>
-              <FaUser />
-            </Link>
-            */}
-          </nav>
+      <UserAuth />
+    </nav>
+  );
+}
+
+export default function Header() {
+  const currentPage = usePathname();
+  let CurrentNavigation = GeneralNavigation;
+
+  if (currentPage.toLowerCase().includes('/organization')) {
+    CurrentNavigation = OranizationNavigation;
+  } else if (currentPage.toLowerCase().includes('/club')) {
+    CurrentNavigation = ClubNavigation;
+  }
+
+  return (
+    <>
+      <header className='header '>
+        <div className='section-container'>
+          <Logo />
+          <CurrentNavigation />
         </div>
-        {/* /section-container */}
       </header>
+
+      {currentPage}
     </>
   );
 }

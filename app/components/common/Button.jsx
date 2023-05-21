@@ -1,9 +1,9 @@
 'use client';
 
-export default function Button({ color = 'primary', handleClick, children }) {
+export default function Button({ type = 'primary', handleClick, children }) {
   return (
     <>
-      <button className={`button-${color}`} onClick={handleClick}>
+      <button className={`button-${type}`} onClick={handleClick}>
         {children}
       </button>
     </>
