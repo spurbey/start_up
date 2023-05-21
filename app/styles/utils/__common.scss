@@ -1,0 +1,65 @@
+// general styles
+
+$global-transition: 60ms color linear, 150ms background-color ease-in-out,
+  150ms width linear, 200ms border-color linear, transform 200ms linear,
+  margin 220ms linear, 150ms opacity linear;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: $global-transition;
+
+  &::selection {
+    background-color: $dark-pink;
+    color: $white;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  color: $black;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-size: 18px;
+  line-height: 24px;
+
+  @include responsive-small {
+    font-size: 16px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.section-container {
+  max-width: 1300px;
+  margin: 10px auto;
+  padding: 5px 25px;
+
+  @include responsive-small {
+    padding: 15px 10px;
+  }
+}

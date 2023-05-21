@@ -1,0 +1,106 @@
+.button {
+  border: none;
+  outline: hidden;
+  font-size: 18px;
+  font-weight: 400;
+  font-family: inherit;
+  background-color: $dark-pink;
+  text-decoration: none;
+  color: $white;
+  padding: 0 8px;
+  min-width: 110px;
+  width: 100%;
+  max-width: fit-content;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 7px;
+  height: 45px;
+  @include flex(center, center);
+  display: inline-flex;
+  gap: 7px;
+
+  & > svg,
+  & > img {
+    width: 27px;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  @include responsive-medium {
+    min-width: 90px;
+    font-size: 16px;
+  }
+}
+
+.icon {
+  min-width: 0 !important;
+}
+
+.button-primary {
+  @extend .button;
+  background-color: $dark-pink;
+
+  &:hover {
+    background-color: $dark-pink-hover;
+  }
+
+  &:active {
+    background-color: $pink;
+  }
+}
+
+.button-secondary {
+  @extend .button;
+  background-color: $green;
+
+  &:hover {
+    background-color: $green-hover;
+  }
+
+  &:active {
+    background-color: $yellow;
+    color: $black;
+  }
+}
+
+.dropdown {
+  display: inline-block;
+
+  & > button {
+    transform: translateY(0) !important;
+  }
+
+  .active {
+    border-radius: 7px 7px 0 0;
+  }
+
+  &-options {
+    @include flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px 0 10px 0;
+
+    border-radius: 0 0 7px 7px;
+
+    &-primary {
+      background-color: $pink;
+      color: $white;
+    }
+    &-secondary {
+      background-color: $yellow;
+      color: $black;
+    }
+  }
+
+  .option {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
