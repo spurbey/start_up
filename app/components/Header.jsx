@@ -45,7 +45,8 @@ function GeneralNavigation() {
   );
 }
 
-function OranizationNavigation() {
+// Navigation bar for organization page
+function OrganizationNavigation() {
   return (
     <nav className='nav'>
       <ul className='nav-list'>
@@ -80,6 +81,7 @@ function OranizationNavigation() {
   );
 }
 
+// Navigation bar for club page
 function ClubNavigation() {
   return (
     <nav className='nav'>
@@ -122,11 +124,13 @@ function ClubNavigation() {
 }
 
 export default function Header() {
+  // gets the current url path
   const currentPage = usePathname();
   let CurrentNavigation = GeneralNavigation;
 
+  // changes the navigation bar according to the current page
   if (currentPage.toLowerCase().includes('/organization')) {
-    CurrentNavigation = OranizationNavigation;
+    CurrentNavigation = OrganizationNavigation;
   } else if (currentPage.toLowerCase().includes('/club')) {
     CurrentNavigation = ClubNavigation;
   }
@@ -139,8 +143,6 @@ export default function Header() {
           <CurrentNavigation />
         </div>
       </header>
-
-      {currentPage}
     </>
   );
 }

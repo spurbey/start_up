@@ -3,13 +3,6 @@
 import { useState } from 'react';
 import { BsCaretDownFill, BsCaretUpFill } from 'react-icons/bs';
 
-/*
-# TODO:
-- button shoul be available for 5 different colors.
-- change button styling & props passing 
-- separate style file for dropdown component
-*/
-
 export default function DropDown({ options = [], type = 'primary', children }) {
   const [showOptions, setShowOptions] = useState(false);
 
