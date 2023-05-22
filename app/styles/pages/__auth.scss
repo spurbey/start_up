@@ -1,0 +1,68 @@
+.LoginPage,
+.RegisterPage {
+  @include flex(center, center);
+  height: 100%;
+  background-color: $light-pink;
+
+  .form-container {
+    background-color: rgba($color: $white, $alpha: 0.55);
+    border-radius: 7px;
+    @include flex(center, center);
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 50px;
+    width: 100%;
+    max-width: 790px;
+
+    .section-title {
+      font-size: 42px;
+      line-height: 50px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .button-primary {
+    margin-top: 17px;
+    max-width: 210px;
+    height: 57px;
+  }
+
+  .input-field {
+    max-width: 550px;
+    margin: 0 auto;
+    width: 100%;
+
+    label {
+      display: inline-block;
+      margin-bottom: 7px;
+    }
+
+    input {
+      padding: 15px 10px;
+      font-size: inherit;
+      line-height: inherit;
+      font-family: inherit;
+      outline: none;
+      width: 100%;
+      border: 2px solid $dark-pink;
+      border-radius: 3px;
+
+      &:focus,
+      &:hover {
+        border-color: $dark-pink-hover;
+      }
+    }
+  }
+
+  a {
+    color: $dark-pink-hover;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.LoginPage .form-container {
+  height: 720px;
+}
