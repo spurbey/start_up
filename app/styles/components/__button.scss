@@ -68,12 +68,24 @@
 .dropdown {
   display: inline-block;
 
-  & > button {
+  .button {
     transform: translateY(0) !important;
-  }
+    border-radius: 3px;
+    gap: 15px;
+    padding: 0 20px 0 15px;
 
-  .active {
-    border-radius: 7px 7px 0 0;
+    &.active {
+      border-radius: 3px 3px 0 0;
+    }
+
+    &-secondary {
+      background-color: $green-hover;
+      color: $black;
+
+      &:hover {
+        background-color: $green;
+      }
+    }
   }
 
   &-options {
@@ -81,16 +93,15 @@
     flex-direction: column;
     gap: 5px;
     padding: 5px 0 10px 0;
-
-    border-radius: 0 0 7px 7px;
+    border-radius: 0 0 3px 3px;
 
     &-primary {
       background-color: $pink;
       color: $white;
     }
+
     &-secondary {
       background-color: $yellow;
-      color: $black;
     }
   }
 
