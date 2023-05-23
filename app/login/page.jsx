@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useReducer } from 'react';
+import Link from "next/link";
+import { useReducer } from "react";
 
 export default function LoginPage() {
   const [authState, dispatch] = useReducer(
@@ -10,8 +10,8 @@ export default function LoginPage() {
       ...action,
     }),
     {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     }
   );
 
@@ -27,35 +27,39 @@ export default function LoginPage() {
 
   return (
     <>
-      <div className='LoginPage'>
-        <form className='form-container' onSubmit={handleSubmit}>
-          <h3 className='section-title'>Login</h3>
-          <div className='input-field'>
-            <label htmlFor='email'>Email/College id</label>
+      <div className="LoginPage">
+        <form className="form-container" onSubmit={handleSubmit}>
+          <h3 className="section-title">Login</h3>
+          <div className="input-field">
+            <label htmlFor="email">
+              Email/College id <span className="required">*</span>
+            </label>
             <input
-              type='text'
-              id='email'
+              type="text"
+              id="email"
               value={authState.email}
               onChange={(e) => dispatch({ email: e.target.value })}
               required
             />
           </div>
 
-          <div className='input-field'>
-            <label htmlFor='password'>Password</label>
+          <div className="input-field">
+            <label htmlFor="password">
+              Password <span className="required">*</span>
+            </label>
             <input
-              type='password'
-              id='password'
+              type="password"
+              id="password"
               value={authState.password}
               onChange={(e) => dispatch({ password: e.target.value })}
               required
             />
           </div>
 
-          <button className='button-primary'>Login</button>
+          <button className="button-primary">Login</button>
 
           <p>
-            Not Registered? <Link href={'/register'}>Register Here</Link>
+            Not Registered? <Link href={"/register"}>Register Here</Link>
           </p>
         </form>
       </div>
