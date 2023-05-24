@@ -2,6 +2,8 @@ import express from "express";
 import authRoutes from "./routes/auth.js";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
 const app = express();
 import { connect } from "./db/connect.js";
 
@@ -15,6 +17,7 @@ app.get("/", (req, res) => {
 });
 //auth Routes
 app.use("/api/auth", authRoutes);
+app.use(cookieParser());
 
 const port = process.env.PORT || 8000;
 
