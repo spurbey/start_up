@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 
 export default function LoginPage() {
   const [authState, dispatch] = useReducer(
@@ -15,6 +15,8 @@ export default function LoginPage() {
     }
   );
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -23,6 +25,10 @@ export default function LoginPage() {
       password: authState.password,
     };
     console.log(credential);
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -35,6 +41,7 @@ export default function LoginPage() {
               Email/College id <span className="required">*</span>
             </label>
             <input
+              placeholder="username@example.com"
               type="text"
               id="email"
               value={authState.email}
@@ -47,13 +54,30 @@ export default function LoginPage() {
             <label htmlFor="password">
               Password <span className="required">*</span>
             </label>
-            <input
-              type="password"
-              id="password"
-              value={authState.password}
-              onChange={(e) => dispatch({ password: e.target.value })}
-              required
-            />
+            <div className="password-input">
+              <input
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={authState.password}
+                onChange={(e) => dispatch({ password: e.target.value })}
+                required
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={togglePasswordVisibility}
+              >
+                <img
+                  src={
+                    showPassword
+                      ? "./eye-password-show-icon.png"
+                      : "./eye-password-hide-icon.png"
+                  }
+                  alt={showPassword ? "Hide" : "Show"}
+                />
+              </button>
+            </div>
           </div>
 
           <button className="button-primary">Login</button>
