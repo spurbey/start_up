@@ -71,8 +71,8 @@ export default function Testimonials() {
       <div className='Testimonials'>
         <Swiper spaceBetween={30} slidesPerView={3}>
           {testimonials.map((testimonial, idx) => (
-            <SwiperSlide>
-              <Testimonial key={idx} testimonial={testimonial} />
+            <SwiperSlide key={idx}>
+              <Testimonial testimonial={testimonial} />
             </SwiperSlide>
           ))}
         </Swiper>
