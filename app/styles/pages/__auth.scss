@@ -1,8 +1,8 @@
 .LoginPage,
 .RegisterPage {
   @include flex(center, center);
-  height: 100%;
   background-color: $light-pink;
+  height: 110%;
 
   .form-container {
     background-color: rgba($color: $white, $alpha: 0.55);
@@ -11,8 +11,9 @@
     flex-direction: column;
     gap: 30px;
     padding: 40px 50px;
-    width: 100%;
+    width: 80%;
     max-width: 790px;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5);
 
     .section-title {
       font-size: 42px;
@@ -45,7 +46,7 @@
       outline: none;
       width: 100%;
       border: 2px solid $dark-pink;
-      border-radius: 3px;
+      border-radius: 10px;
 
       &:focus,
       &:hover {
@@ -69,4 +70,35 @@
 
 .required {
   color: red;
+}
+
+//password show/hide function
+
+.password-input {
+  position: relative;
+}
+.password-input img{
+  position: absolute;
+  color: #343333;
+  padding:5px;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  border-radius: 5px;
+  height:30px;
+  width:30px;
+}
+
+.toggle-password {
+  position: absolute;
+  height: 50px;
+  width: 40px;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding:5px;
+  border:none;
+  background:none;
 }
