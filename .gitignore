@@ -4,6 +4,7 @@
 # next.js
 /.next/
 
+
 # production
 /build
 
@@ -12,5 +13,5 @@ yarn-debug.log*
 
 # local env files
 .env*.local
-
+config/.env
 
