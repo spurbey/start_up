@@ -1,0 +1,151 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    background-color: #e7d7f7;
+    padding: 50px;
+    min-height: 100vh;
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-left: 100px;
+        padding-top: 20px;
+
+        .profile-pic-wrapper {
+            margin-right: 20px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+    }
+
+    .name {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .username {
+        font-size: 16px;
+        color: gray;
+    }
+
+    .icons {
+        display: flex;
+    }
+
+    .chat-icon,
+    .notification-icon {
+        cursor: pointer;
+        font-size: 30px;
+        margin: 20px;
+        margin-top: -75px;
+    }
+
+    .p-icon {
+        margin-right: 13px;
+    }
+
+    .edit-profile-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #99eb99;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .create-club-button {
+        margin-top: 20px;
+        padding: 15px 25px;
+        border: none;
+        border-radius: 10px;
+        background-color: #7a3e5c;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .side-header {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .p-search {
+        display: flex;
+        align-items: center;
+        margin: 50px;
+        width: 100%;
+        max-width: 350px;
+        height: 100px;
+
+    }
+
+    .search-input {
+        padding: 15px;
+        border: 1px solid #060606;
+        border-radius: 10px;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .join-button {
+        margin-left: 10px;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 10px;
+        background-color: #7a3e5c;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .p-dropdown {
+        margin: 10px 60px;
+    }
+
+    .dropdown-button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #b2a7b7;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        width: 35%;
+    }
+
+    .dropdown-content a {
+        display: block;
+        padding: 5px 10px;
+        color: #333;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #e3e3e3;
+    }
+}
