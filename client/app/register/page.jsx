@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import { useEffect, useReducer, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useUserContext } from '../context/user_context';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [authState, dispatch] = useReducer(
     (authState, action) => ({
       ...authState,
@@ -21,11 +24,13 @@ export default function RegisterPage() {
   const [dispalyEyeIcon, setDisplayEyeIcon] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  const val = useUserContext();
+
   useEffect(() => {
     setDisplayEyeIcon(authState.password.length > 0);
   }, [authState.password]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     let credential = {
@@ -34,7 +39,22 @@ export default function RegisterPage() {
       username: authState.username,
       password: authState.password,
     };
-    console.log(credential);
+
+    // console.log("register",val.email);
+    // let d;
+    const fe = await fetch("http://localhost:8000/api/auth/register",{
+      method:"POST",
+      headers:{
+        "content-type":"application/json",
+       },
+      body:JSON.stringify(credential)
+    }).then(data=>data.text().then(data=>{
+      val.setUserName(data.username);
+      val.setEmail(data.email);
+    }));
+    // console.log(d);
+    router.push("/login");
+    // console.log(credential);
   };
 
   return (

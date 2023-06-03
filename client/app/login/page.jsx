@@ -1,10 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useState} from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useRouter } from 'next/navigation';
+import { useUserContext } from '../context/user_context';
 
 export default function LoginPage() {
+  const router  = useRouter();
   const [authState, dispatch] = useReducer(
     (authState, action) => ({
       ...authState,
@@ -19,15 +22,35 @@ export default function LoginPage() {
   const [dispalyEyeIcon, setDisplayEyeIcon] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const val = useUserContext();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let credential = {
       email: authState.email,
-      password: authState.password,
+      password: ''+authState.password,
     };
-    console.log(credential);
-  };
+    const fe = await fetch("http://localhost:8000/api/auth/login",{
+      method:"POST",
+      headers:{
+        "content-type":"application/json",
+       },
+      body:JSON.stringify(credential)
+    }).then(data=>{
+      if(!data.ok) throw new Error("Not found");
+      return data.json();
+    }).then(data=>{
+      // console.log(data);
+      // localStorage.setItem("username",data.details.username);
+      // localStorage.setItem("email",data.details.email);
+      // console.log("login",val.email);
+      val.setEmail(data.details.email);
+      val.setUserName(data.details.username);
+      // val.setWorkEmail(data.details.)
+        router.push('/profile');
+    })
+    };
 
   useEffect(() => {
     setDisplayEyeIcon(authState.password.length > 0);
