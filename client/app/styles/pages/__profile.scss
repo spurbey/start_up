@@ -1,0 +1,82 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    background-color: #e7d7f7;
+    padding: 50px;
+    min-height: 100vh;
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-left: 100px;
+        padding-top: 20px;
+
+        .profile-pic-wrapper {
+            margin-right: 20px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+    }
+
+    .name {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .username {
+        font-size: 16px;
+        color: gray;
+    }
+
+    .icons {
+        display: flex;
+    }
+
+    .chat-icon,
+    .notification-icon {
+        cursor: pointer;
+        font-size: 30px;
+        margin: 20px;
+        margin-top: -75px;
+    }
+
+    .p-icon {
+        margin-right: 13px;
+    }
+
+    .side-header {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .p-search {
+        display: flex;
+        align-items: center;
+        margin: 50px;
+        width: 100%;
+        max-width: 350px;
+        height: 100px;
+
+    }
+
+    .search-input {
+        padding: 15px;
+        border: 1px solid #060606;
+        border-radius: 10px;
+        font-size: 20px;
+        margin:0 10px;
+    }
+}

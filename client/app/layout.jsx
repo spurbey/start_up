@@ -1,6 +1,8 @@
+'use client'
 import { Inter } from 'next/font/google';
 import './styles/main.scss';
 import Header from '@/app/components/Header';
+import {UserContextProvider} from "../app/context/user_context";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,7 +16,9 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body className={inter.className}>
         <Header />
-        {children}
+        <UserContextProvider>
+          {children}
+        </UserContextProvider>
       </body>
     </html>
   );
