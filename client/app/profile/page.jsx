@@ -2,43 +2,34 @@
 import React, { useState, useEffect } from "react";
 import { AiFillMessage } from "react-icons/ai";
 import { IoMdNotifications } from "react-icons/io";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import { useUserContext } from "../context/user_context";
+import DropDown from "../components/common/Dropdown";
+import Button from "../components/common/Button";
 // import { useRouter } from "next/router";
 
 const ProfilePage = () => {
   // const router = useRouter();
   const [user, setUser] = useState(null);
-  const [joinedDropdownOpen, setJoinedDropdownOpen] = useState(false);
-  const [headDropdownOpen, setHeadDropdownOpen] = useState(false);
   const [joinedClubs, setJoinedClubs] = useState([]);
   const [headClubs, setHeadClubs] = useState([]);
 
   const val = useUserContext();
 
-  const toggleJoinedDropdown = () => {
-    setJoinedDropdownOpen(!joinedDropdownOpen);
-  };
-
-  const toggleHeadDropdown = () => {
-    setHeadDropdownOpen(!headDropdownOpen);
-  };
-
   useEffect(() => {
-  //   // Fetch user data based on username from the backend
-  //   fetchUserData(props.fetchdata) 
-  //     .then((userData) => {
-  //       setUser(userData);
-  //       setJoinedClubs(userData.joinedClubs);
-  //       setHeadClubs(userData.headClubs);
-  //     })
-  //     .catch((error) => console.error(error));
-    console.log("Profile",val.email);
-    const p ={
-      username:val.userName,//localStorage.getItem("username"),
-      email:val.email,//localStorage.getItem("email"),
-    }
+    //   // Fetch user data based on username from the backend
+    //   fetchUserData(props.fetchdata)
+    //     .then((userData) => {
+    //       setUser(userData);
+    //       setJoinedClubs(userData.joinedClubs);
+    //       setHeadClubs(userData.headClubs);
+    //     })
+    //     .catch((error) => console.error(error));
+    console.log("Profile", val.email);
+    const p = {
+      username: val.userName, //localStorage.getItem("username"),
+      email: val.email, //localStorage.getItem("email"),
+    };
     // console.log(localStorage.getItem("email"));
     setUser(p);
     // router.push("/login");
@@ -76,6 +67,9 @@ const ProfilePage = () => {
   if (!user) {
     return <div>Loading...</div>;
   }
+  const profilePicUrl =
+    user.profilePicUrl ||
+    "https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png";
 
   return (
     <div className="profile">
@@ -83,14 +77,14 @@ const ProfilePage = () => {
         <div className="profile-pic-wrapper">
           <img
             className="profile-pic"
-            src={user.profilePicUrl}
+            src={profilePicUrl}
             alt="Profile Picture"
           />
         </div>
         <div className="profile-info">
           <h1 className="name">{user.name}</h1>
-          <p className="username">{user.username}</p>
-          <button className="edit-profile-button">Edit Profile</button>
+          <h2 className="username">{user.username}</h2>
+          <button className="button-secondary">Edit Profile</button>
         </div>
         <div className="side-header">
           <div className="icons">
@@ -102,10 +96,10 @@ const ProfilePage = () => {
             </span>
           </div>
           <div className="create-club-organization">
-            <button className="create-club-button">
+            <Button className="button-primary">
               <BsFillPlusCircleFill className="p-icon" />
               Create Club/Organization
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -116,38 +110,14 @@ const ProfilePage = () => {
           placeholder="Search by name/code"
           className="search-input"
         />
-        <button className="join-button">JOIN</button>
+        <Button className="button-primary">JOIN</Button>
       </div>
-      <div className="p-dropdown">
-        <button className="dropdown-button" onClick={toggleJoinedDropdown}>
-          <IoIosArrowDropdownCircle className="p-icon" />
-          Joined Club/Organization
-        </button>
-        {joinedDropdownOpen && (
-          <div className="dropdown-content">
-            {joinedClubs.map((club, index) => (
-              <a href="#" key={index}>
-                {club.name}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="p-dropdown">
-        <button className="dropdown-button" onClick={toggleHeadDropdown}>
-          <IoIosArrowDropdownCircle className="p-icon" />
-          Head of Club/Organization
-        </button>
-        {headDropdownOpen && (
-          <div className="dropdown-content">
-            {headClubs.map((club, index) => (
-              <a href="#" key={index}>
-                {club.name}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
+      <DropDown options={joinedClubs.map((club) => club.name)}>
+        Joined Club/Organization
+      </DropDown>
+      <DropDown options={headClubs.map((club) => club.name)}>
+        Head of Club/Organization
+      </DropDown>
     </div>
   );
 };
