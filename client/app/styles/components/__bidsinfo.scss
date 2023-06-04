@@ -1,0 +1,41 @@
+.bids-info {
+    display: inline-flex;
+    margin-bottom: 10px;
+    margin: 5px;
+    background-color: $white;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    color: $white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+
+    .info-box {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        div {
+            flex: 1;
+        }
+    }
+
+    .club-joined,
+    .average-rating,
+    .bids-won,
+    .bids-participated {
+        margin: 10px;
+        background-color: $dark-pink;
+        padding: 20px;
+        border-radius: 10px;
+        flex: 1;
+        min-width: 250px;
+
+        .bids-icon{
+            margin:0 10px;
+        }
+        .bids-content{
+            margin-left: 35px;
+        }
+
+    }
+}
