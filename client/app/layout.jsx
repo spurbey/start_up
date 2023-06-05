@@ -1,4 +1,4 @@
-'use client'
+// 'use client'
 import { Inter } from 'next/font/google';
 import './styles/main.scss';
 import Header from '@/app/components/Header';
