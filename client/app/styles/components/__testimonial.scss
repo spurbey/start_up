@@ -1,4 +1,7 @@
 .Testimonials {
+  background-color: $light-pink;
+  padding: 40px;
+  border-radius: 5px;
   .swiper {
     padding: 0 33px;
   }
@@ -25,13 +28,14 @@
 
 .testimonial {
   user-select: none;
-  background-color: $light-pink;
+  background-color: $white;
   padding: 15px 20px;
   border-radius: 7px;
   @include flex(center, flex-start);
   flex-direction: column;
   gap: 10px;
   height: 280px;
+  margin:10px;
 
   &__event-title {
     font-size: 20px;

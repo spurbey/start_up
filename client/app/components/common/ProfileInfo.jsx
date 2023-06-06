@@ -52,7 +52,7 @@ const ProfileInfo = ({
               </a>
             )}
           </div>
-          <button className="button-secondary">Edit Page</button>
+          <button className="button button-secondary">Edit Page</button>
         </div>
       </div>
     </div>
