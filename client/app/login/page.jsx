@@ -31,25 +31,30 @@ export default function LoginPage() {
       email: authState.email,
       password: ''+authState.password,
     };
-    const fe = await fetch("http://localhost:8000/api/auth/login",{
-      method:"POST",
-      headers:{
-        "content-type":"application/json",
-       },
-      body:JSON.stringify(credential)
-    }).then(data=>{
-      if(!data.ok) throw new Error("Not found");
-      return data.json();
-    }).then(data=>{
-      // console.log(data);
-      // localStorage.setItem("username",data.details.username);
-      // localStorage.setItem("email",data.details.email);
-      // console.log("login",val.email);
-      val.setEmail(data.details.email);
-      val.setUserName(data.details.username);
-      // val.setWorkEmail(data.details.)
-        router.push('/profile');
-    })
+    try {
+      const fe = await fetch("http://localhost:8000/api/auth/login",{
+        method:"POST",
+        headers:{
+          "content-type":"application/json",
+        },
+        body:JSON.stringify(credential)
+      }).then(data=>{
+        // console.log(data);
+        if(!data.ok) throw new Error("Not found");
+        return data.json();
+      }).then(data=>{
+        // console.log(data);
+        // localStorage.setItem("username",data.details.username);
+        // localStorage.setItem("email",data.details.email);
+        // console.log("login",val.email);
+        val.setEmail(data.details.email);
+        val.setUserName(data.details.username);
+        // val.setWorkEmail(data.details.)
+          router.push('/profile');
+      })
+    }catch{
+      alert("wrong password/email");
+    }
     };
 
   useEffect(() => {

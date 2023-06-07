@@ -1,5 +1,5 @@
 .LoginPage,
-.RegisterPage {
+.RegisterPage, .CreateEventPage {
   @include flex(center, center);
   background-color: $light-pink;
   min-height: 100vh;
@@ -40,7 +40,7 @@
       margin-bottom: 7px;
     }
 
-    input {
+    input,select {
       padding: 15px 10px;
       font-size: inherit;
       line-height: inherit;

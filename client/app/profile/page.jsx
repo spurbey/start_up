@@ -81,7 +81,7 @@ const ProfilePage = () => {
             alt="Profile Picture"
           />
         </div>
-        <div className="profile-info">
+        <div className="profile-info" style={{"display":"block"}}>
           <h1 className="name">{user.name}</h1>
           <h2 className="username">{user.username}</h2>
           <button className="button button-secondary">Edit Profile</button>
