@@ -1,0 +1,76 @@
+.club-page {
+    display: flex;
+    flex-direction: column;
+    background-color: $light-pink;
+
+    .club-icon{
+        margin: 0 5px;
+    }
+
+    .profileinfo {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 50px;
+
+    
+        button {
+            margin-right: 10px;
+        }
+    }
+
+    .club-buttons{
+        display: flex;
+        flex-direction: column;
+        margin-right:250px;
+        margin-top: 50px;
+
+        Button{
+            margin-bottom: 20px;
+        }
+    }
+
+    .about-bids{
+        display: flex;
+        flex-direction: row;
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+
+        .aboutus{
+            margin-right: 80px;
+            margin-top: 10px;
+        }
+
+        .bidsinfo{
+            margin-left: 80px;
+        }
+    }
+
+    .organizers{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin:50px;
+
+
+        .organizers-title{
+            margin-bottom: 20px;
+        }
+    }
+    .testimonials{
+        margin: 20px 50px;
+        box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.5);
+    }
+    .events-brief{
+        margin: 30px 50px;
+        box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .image img{
+        width: 100%;
+
+    }
+    
+}
+

@@ -84,7 +84,7 @@ const ProfilePage = () => {
         <div className="profile-info">
           <h1 className="name">{user.name}</h1>
           <h2 className="username">{user.username}</h2>
-          <button className="button-secondary">Edit Profile</button>
+          <button className="button button-secondary">Edit Profile</button>
         </div>
         <div className="side-header">
           <div className="icons">

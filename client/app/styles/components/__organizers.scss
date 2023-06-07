@@ -1,0 +1,55 @@
+.organizersContainer {
+    display: inline-block;
+    min-width: 600px;
+    max-width: 1000px;
+    margin: 20px;
+    background-color: $white;
+    padding:40px;
+    border-radius: 10px;
+    
+}
+.organizersContainer h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:15px;
+    font-size: 50px;
+}
+
+.organizersList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.organizer {
+    flex: 0 0 auto;
+    margin: 50px;
+    text-align: center;
+    height:300px;
+    width:150px;
+}
+
+.organizer img ,.defaultProfileIcon{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    
+}
+
+.organizer h2 {
+    margin-bottom: 5px;
+    width:150px;
+    min-height:30px;
+}
+
+.organizer p {
+    margin-bottom: 10px;
+    width: 150px;
+    min-height: 50px;
+}
+
