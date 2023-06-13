@@ -7,10 +7,18 @@ const clubPfpStorage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         // console.log(req)
-        cb(null, "clubPfp_" + req.body.clubname + ".jpeg" )
+        cb(null, "clubPfp_" + req.body.clubname + ".jpeg")
     }
 })
 
+const clubFeatureImagesStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "../server/uploads/clubFeaturedImages")
+    },
+    filename: function (req, file, cb) {
+        cb(null, "clubFeatImg_" + Date.now() + ".jpeg")
+    }
+})
 
 const fileFilter = (req, file, cb) => {
     //accept only .jpeg and .png formats
@@ -25,3 +33,9 @@ export const clubPfpUpload = multer({
     limits: { fileSize: 1024 * 1024 * 4 }, //max file size 4 MB
     fileFilter: fileFilter
 }).single("clubPfpImageName")
+
+export const clubFeatureImagesUpload = multer({
+    storage: clubFeatureImagesStorage, 
+    limits: { fileSize: 1024 * 1024 * 4 },
+    fileFilter: fileFilter
+}).array("featuredImages", 5)

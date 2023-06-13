@@ -4,6 +4,8 @@ const { Schema } = mongoose;
 //question model
 const clubSchema = new Schema({
     ownerid: {
+
+        // about
         type: String,
         required: true,
         unique: true
@@ -26,8 +28,56 @@ const clubSchema = new Schema({
     //     default: false,
     // },
 
+    Rating: {
+        type: Number,
+    },
+
     clubPfpImageName: {
         type: String,
+    },
+
+    //social media handles
+    facebook: {
+        type: String,
+        default: "",
+    },
+
+    instagram: {
+        type: String,
+        default: "",
+
+    },
+
+    twitter: {
+        type: String,
+        default: "",
+
+    },
+
+    linkedin: {
+        type: String,
+        default: "",
+    },
+
+    //featured images
+    featuredImages: {
+        type: Object,
+        default:{},
+    },
+
+    featImgTitle1: {
+        type: String,
+        default: "",
+    },
+
+    featImgTitle2: {
+        type: String,
+        default: "",
+    },
+
+    featImgTitle3: {
+        type: String,
+        default: "",
     },
 
     createdAt: { type: Date, default: Date.now },
