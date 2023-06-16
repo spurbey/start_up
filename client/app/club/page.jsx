@@ -8,6 +8,7 @@ import Button from "../components/common/Button";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FaHandshake } from "react-icons/fa";
 import EventBriefs from "../components/event/EventsBrief";
+import Carousel from "../components/common/Carousel";
 
 const ClubPage = () => {
   const dummyOrganizers = [
@@ -40,6 +41,28 @@ const ClubPage = () => {
       name: "Jane Smith",
       profilePhoto: "",
       post: "Vice President",
+    },
+  ];
+  const images = [
+    {
+      imageUrl:
+        "https://educationbytes.in/wp-content/uploads/2022/07/NIT-rourkela.jpg",
+      description: "Image 1 description",
+    },
+    {
+      imageUrl:
+        "https://lh3.googleusercontent.com/p/AF1QipMlIUQZELzD3KdfU4PXWjF2kIXgWppFCswAdsX_=s1360-w1360-h1020",
+      description: "Image 2 description",
+    },
+    {
+      imageUrl:
+        "https://images.shiksha.com/mediadata/images/1607331878phpYmd02Y.jpeg",
+      description: "Image 2 description",
+    },
+    {
+      imageUrl:
+        "https://images.shiksha.com/mediadata/images/1488266730php8RK6HL.jpeg",
+      description: "Image 2 description",
     },
   ];
   const testimonials = [
@@ -115,11 +138,9 @@ const ClubPage = () => {
           />
         </div>
       </div>
-      <div className="image">
-        <img
-          src="https://educationbytes.in/wp-content/uploads/2022/07/NIT-rourkela.jpg"
-          alt="photo"
-        />
+      <div>
+        <h1>Sliding Image Carousel</h1>
+        <Carousel images={images} />
       </div>
       <div className="events-brief">
         <EventBriefs events={eventsBrief} />
