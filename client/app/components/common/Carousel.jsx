@@ -28,35 +28,41 @@ const Carousel = ({ images }) => {
     <div className="carousel-container">
       <div className="carousel-slide">
         <ul className="carousel-images">
+          <div class="overlay"></div>
           {images.map((image, index) => (
             <li
               key={index}
               className={`carousel-image ${
-                index === slideIndex ? "active" : ""
+                index === slideIndex ? "active" : "inactive"
               }`}
             >
               <img src={image.imageUrl} alt={image.description} />
             </li>
           ))}
+          <div className="carousel-navigation">
+              <div class="overlay">
+                <button className="carousel-button prev" onClick={prevSlide}>
+                  <GrPrevious />
+                </button>
+              </div>
+              <div className="carousel-dots">
+                {images.map((_, index) => (
+                  <span
+                    key={index}
+                    className={`carousel-dot ${index === slideIndex ? "active" : ""}`}
+                    onClick={() => setSlideIndex(index)}
+                  />
+                ))}
+              </div>
+              <div class="overlay">
+                <button className="carousel-button next" onClick={nextSlide}>
+                  <GrNext />
+                </button>
+              </div>
+            </div>
         </ul>
       </div>
-      <div className="carousel-navigation">
-        <button className="carousel-button prev" onClick={prevSlide}>
-          <GrPrevious />
-        </button>
-        <div className="carousel-dots">
-          {images.map((_, index) => (
-            <span
-              key={index}
-              className={`carousel-dot ${index === slideIndex ? "active" : ""}`}
-              onClick={() => setSlideIndex(index)}
-            />
-          ))}
-        </div>
-        <button className="carousel-button next" onClick={nextSlide}>
-          <GrNext />
-        </button>
-      </div>
+      
     </div>
   );
 };

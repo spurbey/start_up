@@ -32,19 +32,17 @@
     .about-bids{
         display: flex;
         flex-direction: row;
-        margin-left: 50px;
-        margin-right: 50px;
-        margin-top: 50px;
-        margin-bottom: 50px;
+        justify-content: space-around;
+        gap: 30px;
 
         .aboutus{
-            margin-right: 80px;
+            // margin-right: 40px;
             margin-top: 10px;
         }
 
-        .bidsinfo{
-            margin-left: 80px;
-        }
+        // .bidsinfo{
+        //     // margin-left: 10px;
+        // }
     }
 
     .organizers{

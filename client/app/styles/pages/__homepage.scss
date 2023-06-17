@@ -1,0 +1,52 @@
+.home-page{
+    width:100vw;
+    height: fit-content;
+    display: flex;
+    background-color: $light-pink;
+
+    .filter{
+        flex-grow: 1;
+        background-color: $pink;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .header{
+            border: 1px solid $black;
+            padding: 4px;
+            margin: 4px 0;
+            width: fit-content;
+            font-weight: 600;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        div div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        div svg{
+            padding: 2px;
+        }
+
+        div span{
+            padding: 4px;
+            margin: 0 4px;
+        }
+
+        div input{
+            margin-left: 10px;
+            width: 3vw;
+        }
+    }
+
+    .event-bid-card-layout{
+        flex-grow: 3;
+    }
+}

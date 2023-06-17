@@ -129,9 +129,9 @@ export default function Header() {
   let CurrentNavigation = GeneralNavigation;
 
   // changes the navigation bar according to the current page
-  if (currentPage.toLowerCase().includes('/organization')) {
+  if (currentPage.toLowerCase().includes('/organization') || currentPage.toLowerCase().includes('/home_page_club')) {
     CurrentNavigation = OrganizationNavigation;
-  } else if (currentPage.toLowerCase().includes('/club')) {
+  } else if (currentPage.toLowerCase().includes('/club') || currentPage.toLowerCase().includes('/home_page_org')) {
     CurrentNavigation = ClubNavigation;
   }
 
