@@ -1,5 +1,7 @@
 
 import Clubs from "../model/clubSchema.js";
+import * as fs from "fs"
+import path from "path"
 import { getSearchInputTextType } from "../utils/getSearchTextType.js";
 
 
@@ -11,7 +13,9 @@ export const createClub = async (req, res, next) => {
 
     const clubCode = "club" + Date.now()
 
-    const fileName = "clubPfp_" + req.body.clubname + ".jpeg"
+    let fileName = "clubPfp_" + req.body.clubname + ".jpeg"
+
+    fileName = fs.readFileSync("../server/uploads/clubFeaturedImages/" + fileName)
 
     const newReq = { ...req.body, clubcode: clubCode, clubPfpImageName: fileName }
 
@@ -102,14 +106,16 @@ export const uploadFeaturedImages = async (req, res, next) => {
     if (req.files) {
       // console.log(req.files, req.body)
       let featuredImagesList = req.files.map(m => {
-        return m.filename
+        return fs.readFileSync(path.join("../server/uploads/clubFeaturedImages/" + m.filename))
+        // return m.filename
       })
-      let featuredImagesObj = { ...featuredImagesList }
-      let updateData = { ...featuredImagesObj, ...req.body }
+      // let featuredImagesObj = { ...featuredImagesList }
+      let updateData = { ... req.body, featuredImages : featuredImagesList }
       console.log(updateData)
-      const data = await Clubs.findByIdAndUpdate(req.body.userDb_Id, updateData)
+      const data = await Clubs.findByIdAndUpdate("648c9ef1d2a54d9e157a022f", updateData)
     }
   } catch (error) {
     next(error)
   }
 }
+
