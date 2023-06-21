@@ -5,12 +5,15 @@ import { BsFacebook } from "react-icons/bs";
 import { AiFillLinkedin } from "react-icons/ai";
 
 const ProfileInfo = ({
-  photourl,
-  isOrganization = false, //-> true for organization and false for club
-  name = "John Doe", // taking dummy value for testing
-  isVerified = true,
-  facebookLink = "https://www.facebook.com/",
-  LinkedinLink = "https://www.linkedin.com/",
+  data: {
+    //default value
+    photourl,
+    isOrganization = false,
+    name = "John Doe",
+    isVerified = false,
+    facebookLink = "https://www.facebook.com/",
+    LinkedinLink = "https://www.linkedin.com/",
+  },
 }) => {
   return (
     <div className="profile-info">

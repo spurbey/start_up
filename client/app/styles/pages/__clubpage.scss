@@ -1,4 +1,4 @@
-.club-page {
+.club-page,.org-page {
     display: flex;
     flex-direction: column;
     background-color: $light-pink;
@@ -43,6 +43,35 @@
         // .bidsinfo{
         //     // margin-left: 10px;
         // }
+    }
+
+    .org-row-2{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 30px;
+        margin: 30px 0;
+
+        .event-sponsored{
+            width: 600px;
+            min-height: 190px;
+            background: $white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+            padding: 25px;
+            border-radius: 10px;
+        }
+        .event-sponsored-title{
+            margin-bottom: 10px;
+        }
+        .dot{
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: black;
+            margin-right: 10px;
+            margin-bottom: 3px;
+        }
     }
 
     .organizers{
