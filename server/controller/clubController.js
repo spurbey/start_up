@@ -2,22 +2,23 @@
 import Clubs from "../model/clubSchema.js";
 import * as fs from "fs"
 import path from "path"
-import { getSearchInputTextType } from "../utils/getSearchTextType.js";
+// import { getSearchInputTextType } from "../utils/getSearchTextType.js";
+// import { query } from "express";
 
 
 // create a new club
 export const createClub = async (req, res, next) => {
 
   try {
-    // console.log(req.file);
+    console.log(req.body, req.file);
 
     const clubCode = "club" + Date.now()
 
-    let fileName = "clubPfp_" + req.body.clubname + ".jpeg"
+    // Profile picture
+    let fileName = req.file.filename
+    const pick = fs.readFileSync(path.join("../server/uploads/clubPfp/" + fileName))
 
-    fileName = fs.readFileSync("../server/uploads/clubFeaturedImages/" + fileName)
-
-    const newReq = { ...req.body, clubcode: clubCode, clubPfpImageName: fileName }
+    const newReq = { ...req.body, clubcode: clubCode, clubPfpImage: pick}
 
     const data = await Clubs.create(newReq)
 
@@ -37,67 +38,78 @@ export const createClub = async (req, res, next) => {
   }
 };
 
+// // get a club's detials by clubname or clubcode 
+// export const getClubDataByClubCodeOrName = async (req, res) => {
+//   const searchInputTextType = getSearchInputTextType(req.body.searchInputText)
+//   // console.log(searchInputTextType)
+
+//   try {
+//     const clubData = await Clubs.findOne({ [searchInputTextType]: req.body.searchInputText })
+//     console.log(clubData)
+//     if (clubData) {
+//       res.json(clubData)
+//     } else {
+//       res.json({
+//         msg: "Error fetching data",
+//       });
+//     }
+//   } catch (error) { next(error) }
+// }
+
 // get a club's detials by clubname or clubcode 
-export const getClubDataByClubCodeOrName = async (req, res) => {
-  const searchInputTextType = getSearchInputTextType(req.body.searchInputText)
-  // console.log(searchInputTextType)
-
+export const getClubs = async (req, res, next) => {
   try {
-    const clubData = await Clubs.findOne({ [searchInputTextType]: req.body.searchInputText })
-    // console.log(clubData)
-    if (clubData) {
-      res.json(clubData)
+  //filer
+    const queryObj = {...req.query}
+    const excludeFields = ["page", "sort", "limit", "fields", "skip"]
+    excludeFields.forEach(el => delete queryObj[el])
+
+    //sort
+    const sortBy = req.query.sortBy
+    console.log(queryObj, req.query.sort)
+
+    //pagination
+    const page = req.query.page
+    const limit = req.query.limit
+    const skip = (page - 1) * limit
+
+    const clubs = await Clubs.find(queryObj).sort(sortBy).skip(skip).limit(limit)
+  
+    console.log(clubs)
+    if (clubs) {
+      res.status(200).json(clubs)
     } else {
       res.json({
-        msg: "Error fetching data",
+        msg: "Failed to fetch data",
       });
     }
-  } catch (error) { next(error) }
+  } catch (error) {
+    console.log(error) }
 }
 
-// get an owner's clubs list 
-export const getClubsListByOwnerId = async (req, res) => {
-  // console.log(req.params.ownerid)
-  try {
-    const ownersClubsList = await Clubs.find({ ownerid: req.params.ownerid })
-    // console.log(ownersClubsList)
-    if (ownersClubsList) {
-      res.json(ownersClubsList)
-    } else {
-      res.json({
-        msg: "Error fetching data",
-      });
+/* 
+Edit profile
+PUT request: http://localhost:8000/clubs
+req.body: {
+
+    "_id": "6492e795529253c84e8e2281",
+    "<key>": "<value>"
+    "<key>": "<value>"
     }
-  } catch (error) { next(error) }
-}
-
-
-// get entire clubs list
-export const getAllClubsList = async (req, res, next) => {
-  try {
-    const allClubsList = await Clubs.find()
-    console.log(allClubsList)
-    if (allClubsList) {
-      res.json({ allClubsList: allClubsList })
-    } else {
-      res.json({
-        msg: "Error fetching data",
-      });
-    }
-  } catch (error) { next(error) }
-}
-
-// Edit profile
+*/
 export const editClubProfile = async (req, res, next) => {
   try {
-    const updateData = await Clubs.findByIdAndUpdate(req.body, _id, req.body)
-    if (updateData) {
-      res.status(500).json({ msg: "Profile updated!" })
+    console.log(req.body)
+    const updated = await Clubs.findByIdAndUpdate(req.body._id, req.body)
+
+    if (updated) {
+      res.status(500).json({ 
+        msg: "Profile updated!" })
     } else {
       res.json({ msg: "Error" })
     }
   } catch (error) {
-    next(error)
+    console.log(error)
   }
 }
 //update featured images
@@ -110,12 +122,22 @@ export const uploadFeaturedImages = async (req, res, next) => {
         // return m.filename
       })
       // let featuredImagesObj = { ...featuredImagesList }
-      let updateData = { ... req.body, featuredImages : featuredImagesList }
+      let updateData = { ...req.body, featuredImages : featuredImagesList }
       console.log(updateData)
-      const data = await Clubs.findByIdAndUpdate("648c9ef1d2a54d9e157a022f", updateData)
+      const data = await Clubs.findByIdAndUpdate(req.body._id, updateData)
+      if(data){
+        res.status(200).json({
+          msg: "Featured images uploaded successfully."
+        })
+      }else{
+        res.status(401).status({
+          msg: "Failed to upload images."
+        })
+      }
     }
   } catch (error) {
     next(error)
   }
 }
 
+export const deleteClub = async(req, res) => {}

@@ -1,7 +1,8 @@
 import express from "express";
 import authRoutes from "./routes/auth.js";
 import clubRoutes from "./routes/club.js"
-import eventRoutes from "./routes/events.js"
+import testimonyRoutes from "./routes/testimony.js"
+import eventRoutes from "./routes/event.js"
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -33,6 +34,8 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 
 app.use("/", clubRoutes)
+
+app.use("/", testimonyRoutes)
 
 app.use("/", eventRoutes)
 

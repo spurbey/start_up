@@ -23,17 +23,18 @@ const clubSchema = new Schema({
         type: String,
         required: true,
     },
-    // verification: {
-    //     type: Bool,
-    //     default: false,
-    // },
 
-    Rating: {
+    verified: {
+        type: Boolean,
+        default: false,
+    },
+
+    rating: {
         type: Number,
     },
 
-    clubPfpImageName: {
-        type: String,
+    clubPfpImage: {
+        type: Object,
     },
 
     //social media handles
