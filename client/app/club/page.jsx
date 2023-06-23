@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import ProfileInfo from "../components/common/ProfileInfo";
 import AboutUs from "../components/common/AboutUs";
 import BidsInfo from "../components/common/BidsInfo";
@@ -11,6 +12,9 @@ import EventBriefs from "../components/event/EventsBrief";
 import Carousel from "../components/common/Carousel";
 
 const ClubPage = () => {
+  const height = window.innerHeight;
+  const [posx,setposx] = useState(-height*0.8);
+  const [oc,setoc] = useState(0.5); 
   const profileData = {
     photourl:
       "https://media.licdn.com/dms/image/C4D0BAQERkvt6h7NOvQ/company-logo_200_200/0/1658235706890?e=2147483647&v=beta&t=gUkiYC1fP2wkR2xiyP-Ezol0wGQn8taWb9bXPw6Ypj8",
@@ -120,7 +124,22 @@ const ClubPage = () => {
 
   const aboutUsContent =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat vestibulum augue, eu semper lectus dignissim ac. Fusce vel malesuada massa, sed malesuada felis. Aliquam fermentum sem a ex pellentesque, eget eleifend elit volutpat. Sed dapibus efficitur tristique.";
-
+  
+  window.addEventListener("wheel",(event)=>{
+    if(window.scrollY === 0){
+      setposx((-height*0.8));
+      setoc(0.5);
+    }
+    else if(window.scrollY >= 350 ){
+      setposx(0);
+      setoc(0);
+    }
+    else {
+      setposx(posx+event.deltaY);
+      setoc(-window.scrollY/700+0.5);
+    }
+    // console.log(window.scrollY,posx);
+  });
   return (
     <div className="club-page">
       <div className="profileinfo">
@@ -147,10 +166,11 @@ const ClubPage = () => {
           />
         </div>
       </div>
-      <div>
-        <h1>Sliding Image Carousel</h1>
-        <Carousel images={images} />
+      <div className="container-carousel" style={{"top":`${posx+"px"}`}}>
+        {/* <h1>Sliding Image Carousel</h1> */}
+        <Carousel images={images} oc={oc}/>
       </div>
+      
       <div className="events-brief">
         <EventBriefs events={eventsBrief} />
       </div>
