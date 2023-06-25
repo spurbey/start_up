@@ -1,7 +1,7 @@
 .LoginPage,
 .RegisterPage, .CreateEventPage {
   @include flex(center, center);
-  background-color: $light-pink;
+  background-image: $background_gradient;
   min-height: 100vh;
   padding: 20px;
 

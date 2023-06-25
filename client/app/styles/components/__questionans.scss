@@ -1,0 +1,19 @@
+.question-ans-container {
+    margin:10px;
+    background-color: $white;
+    width: 600px;
+    .question {
+        cursor: pointer;
+        padding: 10px;
+        &:hover{
+            transform: translate(10px);
+        }
+        
+    }
+    .answer {
+        margin-left: 5px;
+        padding: 10px;
+    }
+
+    
+}
