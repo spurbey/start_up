@@ -1,0 +1,49 @@
+.Testimonials {
+  background-color: $light-pink;
+  padding: 40px;
+  border-radius: 5px;
+  .swiper {
+    padding: 0 33px;
+  }
+
+  .swiper-wrapper {
+    @include flex();
+  }
+
+  .swiper-slide {
+    width: 100%;
+
+    &-next > .testimonial {
+      padding: 20px 35px;
+      height: 380px;
+      gap: 14px;
+
+      .testimonial-message {
+        font-size: 20px;
+        line-height: 28px;
+      }
+    }
+  }
+}
+
+.testimonial {
+  user-select: none;
+  background-color: $white;
+  padding: 15px 20px;
+  border-radius: 7px;
+  @include flex(center, flex-start);
+  flex-direction: column;
+  gap: 10px;
+  height: 280px;
+  margin:10px;
+
+  &__event-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  &__event-organizer {
+    font-size: 26px;
+    line-height: 34px;
+  }
+}

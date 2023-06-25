@@ -1,0 +1,16 @@
+# dependencies
+node_modules
+
+# next.js
+.next
+
+# production
+build
+
+npm-debug.log*
+
+# local env files
+.env*.local
+
+uploads
+/uploads

@@ -1,0 +1,173 @@
+.home-page {
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+  background-color: $light-pink;
+
+  .filter {
+    // flex-grow: 1;
+    background-color: $pink;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 0 2rem;
+
+    .header {
+      border: 1px solid $black;
+      padding: 4px;
+      margin: 4px 0;
+      width: fit-content;
+      font-weight: 600;
+    }
+    section {
+      .row-flex {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        svg {
+          margin: auto;
+        }
+      }
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+
+    div div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    div svg {
+      padding: 2px;
+    }
+
+    div span {
+      padding: 4px;
+      margin: 0 4px;
+    }
+
+    div input {
+      margin-left: 10px;
+      width: 3vw;
+    }
+  }
+
+  .event-bid-card-layout {
+    flex-grow: 3;
+    margin: 1rem 2rem;
+    .search-createEvent-container {
+      display: flex;
+      justify-content: space-between;
+      .homepage-search {
+        height: 3rem;
+        width: 20rem;
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      .create-event-btn {
+        background-color: #810583;
+        border: none;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        padding: 1rem;
+        color: white;
+        cursor: pointer;
+      }
+    }
+    p {
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 1rem;
+      margin: 3rem 0 0 0;
+      padding: 1rem;
+      position: relative;
+      display: grid;
+      grid-template-columns: 15% 70% 10%;
+      justify-content: space-between;
+      align-items: start;
+
+      .title {
+        position: absolute;
+        top: -2rem;
+        left: 1rem;
+        background-color: $light-pink;
+        border-radius: 10px;
+        padding: 0.4rem;
+      }
+      .first-col {
+        .logo-container {
+          background-color: gray;
+          border-radius: 50%;
+          width: 80px;
+          height: 80px;
+          margin: auto;
+        }
+        p {
+          text-align: center;
+        }
+      }
+
+      .second-col {
+        h1 {
+          display: inline-block;
+          margin-right: 1rem;
+        }
+        span {
+          font-size: 0.8rem;
+          color: gray;
+        }
+
+        .slider-container {
+          .slider {
+            -webkit-appearance: none;
+            width: 50%;
+            height: 8px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: 0.2s;
+            transition: opacity 0.2s;
+          }
+
+          .slider:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      .third-col {
+        background-color: lightgreen;
+        border-radius: 20px;
+
+        p {
+          margin: 0;
+          padding: 0.4rem;
+        }
+      }
+    }
+    .event-tags {
+      text-align: right;
+      margin: 0 0 3rem 0;
+
+      span {
+        background-color: #810583;
+        padding: 1rem 0.6rem;
+        color: white;
+      }
+      span:nth-child(1) {
+        border-radius: 0 0 0 1rem;
+      }
+      span:nth-child(4) {
+        border-radius: 0 0 1rem 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+.EventBriefs {
+    background-color: $white;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px rbg(0,0,0.5);
+
+    .swiper {
+        padding: 0 33px;
+    }
+
+    .swiper-wrapper {
+        @include flex();
+    }
+
+    .swiper-slide {
+        width: 100%;
+
+        &-next>.event-brief {
+            padding: 20px 35px;
+            height: 380px;
+            gap: 14px;
+
+            .event-brief-message {
+                font-size: 20px;
+                line-height: 28px;
+            }
+        }
+    }
+}
+
+.event-brief {
+    user-select: none;
+    background-color: $light-pink;
+    padding: 15px 20px;
+    border-radius: 7px;
+    @include flex(center, flex-start);
+    flex-direction: column;
+    gap: 10px;
+    height: 280px;
+
+    &__event-title {
+        font-size: 20px;
+        line-height: 28px;
+    }
+
+    &__event-organizer {
+        font-size: 26px;
+        line-height: 34px;
+    }
+}

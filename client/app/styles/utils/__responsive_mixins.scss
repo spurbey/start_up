@@ -1,0 +1,24 @@
+@mixin responsive-large() {
+  @media only screen and (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin responsive-medium() {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin responsive-small() {
+  @media only screen and (max-width: 565px) {
+    @content;
+  }
+}
+
+// variable
+@mixin responsive($min, $max) {
+  @media only screen and (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}

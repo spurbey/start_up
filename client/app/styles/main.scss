@@ -1,0 +1,25 @@
+// utils
+@import './utils/_responsive_mixins';
+@import './utils/_mixins';
+@import './utils/_colors';
+@import './utils/_common';
+
+// components
+@import './components/_button';
+@import './components/_header';
+@import './components/_notification';
+@import './components/_testimonial';
+@import './components/_aboutus';
+@import './components/_bidsinfo';
+@import './components/_profileinfo';
+@import './components/_organizers';
+@import './components/_eventsbrief';
+@import './components/_carousel';
+
+// pages
+@import './pages/_home';
+@import './pages/_auth';
+@import './pages/_profile';
+@import './pages/_clubpage';
+@import './pages/_eventpage';
+@import './pages/_homepage';

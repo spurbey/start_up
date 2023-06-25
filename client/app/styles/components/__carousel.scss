@@ -1,0 +1,95 @@
+.carousel-container {
+  width: 100%;
+  position: relative;
+  margin: 10px 0; 
+
+  .carousel-slide {
+    width: 100%;
+    overflow: hidden;
+
+    .carousel-images {
+      display: flex;
+      width: 100%;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      transition: transform 0.5s ease;
+
+      .carousel-image {
+        width: 100%;
+        display: flex;
+
+        &.active {
+          display: block;
+        }
+
+        &.inactive {
+          display: none;
+        }
+
+        img {
+          width: 100%;
+          height: 50vh;
+          object-fit: cover;
+        }
+      }
+
+     
+    }
+  }
+
+
+  .carousel-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-top: 10px;
+    // height: 30px;
+    position: absolute;
+    width: 100%;
+
+    .carousel-button {
+      background-color: transparent;
+      border: none;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+
+    .overlay{
+      position: relative;
+      height: 50vh;
+      background-color: rgba(255,255,255,120);
+      // top:-52vh;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: end;
+      margin-bottom: 10px;
+
+      .carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $grey;
+        margin: 0 5px;
+        cursor: pointer;
+
+        &.active {
+          background-color: $black;
+        }
+      }
+    }
+  }
+}
+
+.carousel-container:hover .overlay{
+  opacity: 1;
+}
+
