@@ -3,6 +3,16 @@ import { useState } from "react";
 import Filter from "../components/common/filter";
 import Button from "../components/common/Button";
 
+export const SmallFilter = ()=>{
+
+  return(
+    <>
+    <div className="filter">
+      <div className="header">Filter</div>
+    </div>
+    </>
+  )
+}
 export const SmallTitleSponserDesc = () => {
   return (
     <>
@@ -82,7 +92,14 @@ export const SmallTitleSponser = ({
               id="myRange"
               onChange={handleSliderChange}
             />
-            <p>{sliderValue}</p>
+            
+            <div className="slider-numbers">
+                      <p>1</p>
+                      <p>2</p>
+                      <p>3</p>
+                      <p>4</p>
+                    </div>
+
           </div>
         </div>
       </section>
@@ -101,14 +118,14 @@ export default function HomePageClub() {
 
   const cardHandleClick = (event) => {
     if(event.currentTarget===event.target){
-    setSponserDetails(!sponserDetails);
+    setSponserDetails(()=>!sponserDetails);
     }
    
   };
   return (
     <>
       <div className="home-page">
-        {!hide_filter && <Filter />}
+        {sponserDetails ? <SmallFilter /> : <Filter />}
         <div className="event-bid-card-layout">
           <div className="search-createEvent-container">
             <input
@@ -151,7 +168,13 @@ export default function HomePageClub() {
                       id="myRange"
                       onChange={handleSliderChange}
                     />
-                    <p>{sliderValue}</p>
+                    <div className="slider-numbers">
+                      <p>1</p>
+                      <p>2</p>
+                      <p>3</p>
+                      <p>4</p>
+                    </div>
+                   
                   </div>
                 </div>
                 <div className="third-col">
