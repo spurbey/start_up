@@ -68,32 +68,123 @@
         border-radius: 10px;
         padding: 1rem;
       }
-
-      .create-event-btn {
-        background-color: #810583;
-        border: none;
-        border-radius: 10px;
-        font-size: 0.9rem;
-        padding: 1rem;
-        color: white;
-        cursor: pointer;
-      }
     }
-    p {
+    .show-events-number {
       margin: 1rem 0;
       font-size: 1rem;
     }
+    .card-large {
+      display: grid;
+      grid-template-columns: 15% 70% 10%;
+      justify-content: space-between;
+      align-items: start;
+      .slider-container {
+        .slider {
+          width: 50%;
+        }
+      }
+    }
+    .card-small-and-desc-container {
+      display: grid;
+      grid-template-columns: 35% 55%;
+      justify-content: space-around;
+      align-items: start;
+      .card-small {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 30% 60%;
+        justify-content: space-between;
+        align-items: start;
+        .slider-container {
+          .slider {
+            width: 100%;
+          }
+        }
+      }
+
+      .sponserDesc-container {
+        background-color: white;
+        padding: 1rem;
+
+        .sponser-desc {
+          // box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+          display: grid;
+          grid-template-columns: 40% 50%;
+          justify-content: space-between;
+          padding-bottom: 1rem;
+          .first-col {
+            display: flex;
+            justify-content: space-around;
+            .logo-container {
+              .logo {
+                background-color: gray;
+                width: 80px;
+                height: 80px;
+              }
+              .posted-by {
+                p,
+                span {
+                  font-size: 0.6rem;
+                }
+                p {
+                  margin: 0;
+                }
+                span {
+                  text-align: center;
+                }
+              }
+            }
+          }
+          .logo-details {
+            span {
+              font-size: 0.8rem;
+            }
+            .socialmedia {
+              display: flex;
+              justify-content: center;
+              gap: 0.2rem;
+              p {
+                margin: 0;
+                font-size: 0.6rem;
+              }
+            }
+          }
+          .second-col {
+            display: grid;
+            grid-template-columns: 45% 45%;
+
+            // justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 0 1rem;
+            padding: 1rem;
+            button {
+              width: 100%;
+              font-size: 1rem;
+            }
+          }
+        }
+        .sponser-about {
+          padding-bottom: 1rem;
+        }
+        .sponser-brochure {
+          height: 200px;
+          background-color: gray;
+          text-align: center;
+        }
+      }
+
+      .sponser-about {
+      }
+    }
+
     .card {
       background-color: white;
       border-radius: 1rem;
       margin: 3rem 0 0 0;
       padding: 1rem;
       position: relative;
-      display: grid;
-      grid-template-columns: 15% 70% 10%;
-      justify-content: space-between;
-      align-items: start;
-
+      z-index: 0;
+      cursor: pointer;
       .title {
         position: absolute;
         top: -2rem;
@@ -128,7 +219,6 @@
         .slider-container {
           .slider {
             -webkit-appearance: none;
-            width: 50%;
             height: 8px;
             background: #d3d3d3;
             outline: none;
@@ -144,7 +234,7 @@
       }
 
       .third-col {
-        background-color: lightgreen;
+        background-color: $green;
         border-radius: 20px;
 
         p {
@@ -158,9 +248,8 @@
       margin: 0 0 3rem 0;
 
       span {
-        background-color: #810583;
+        background-color: $pink;
         padding: 1rem 0.6rem;
-        color: white;
       }
       span:nth-child(1) {
         border-radius: 0 0 0 1rem;

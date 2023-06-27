@@ -67,8 +67,8 @@ function selections({ header, state, obj_list }) {
 
         <div >
           {" "}
-          {institutionTypeData.map((item) => (
-            <div>
+          {institutionTypeData.map((item,idx) => (
+            <div key={idx}>
               <input
                 type="checkbox"
                 checked={checked}
@@ -90,8 +90,8 @@ function selections({ header, state, obj_list }) {
 
         <div>
           {" "}
-          {sponsperTypeData.map((item) => (
-            <div>
+          {sponsperTypeData.map((item,idx) => (
+            <div key={idx}>
               <input type="checkbox" />
               <label htmlFor="">{item}</label>
             </div>
@@ -109,8 +109,8 @@ function selections({ header, state, obj_list }) {
 
         <div>
           {" "}
-          {regionData.map((item) => (
-            <div>
+          {regionData.map((item,idx) => (
+            <div key ={idx}>
               <input type="checkbox" />
               <label htmlFor="">{item}</label>
             </div>
@@ -128,8 +128,8 @@ function selections({ header, state, obj_list }) {
 
         <div>
           {" "}
-          {eventType.map((item) => (
-            <div>
+          {eventType.map((item,idx) => (
+            <div key={idx}>
               <input type="checkbox" />
               <label htmlFor="">{item}</label>
             </div>
@@ -147,8 +147,8 @@ function selections({ header, state, obj_list }) {
 
         <div>
           {" "}
-          {eventTypeLocation.map((item) => (
-            <div>
+          {eventTypeLocation.map((item,idx) => (
+            <div key={idx}>
               <input type="checkbox" />
               <label htmlFor="">{item}</label>
             </div>
@@ -168,7 +168,7 @@ export default function Filter() {
 
   return (
     <>
-      <div class="filter">
+      <div className="filter">
         <div className="header"> Filter</div>
         {selections({
           header: "All Types",
