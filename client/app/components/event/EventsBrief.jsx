@@ -24,13 +24,9 @@ const EventBriefs = ({ events }) => {
         <Swiper spaceBetween={30} slidesPerView={3}>
           {events.map((event, idx) => (
             <SwiperSlide key={idx}>
-<<<<<<< HEAD
-              <EventBrief key={idx} event={event} />
-=======
               <br/>
               <EventBrief key={idx} event={event} />
               <br/>
->>>>>>> 2946175bc7b4ff1066a7455ccf90c4985e8ee805
             </SwiperSlide>
           ))}
         </Swiper>

@@ -3,7 +3,7 @@
   height: fit-content;
   display: flex;
   background-color: $light-pink;
-align-items: start;
+  align-items: start;
   .filter {
     // flex-grow: 1;
     background-color: $pink;
@@ -82,8 +82,8 @@ align-items: start;
         .slider {
           width: 50%;
         }
-        .slider-numbers{
-          width:50%;
+        .slider-numbers {
+          width: 50%;
           display: grid;
           grid-template-columns: 24% 23% 24% 21%;
         }
@@ -104,10 +104,9 @@ align-items: start;
           .slider {
             width: 100%;
           }
-          .slider-numbers{
+          .slider-numbers {
             display: grid;
-          grid-template-columns: 24% 23% 24% 21%;
-
+            grid-template-columns: 24% 23% 24% 21%;
           }
         }
       }
