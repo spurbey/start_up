@@ -32,10 +32,64 @@ function selections({ header, state, obj_list }) {
   ];
   const eventTypeLocation = ["hybrid", "offline", "online"];
 
-  const [checked, setChecked] = useState(false);
+  const [checkedInstitution, setCheckedInstitution] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
-  const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
+  const [checkedSponserShip, setCheckedSponserShip] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [checkedRegion, setCheckedRegion] = useState([false, false]);
+  const [checkedEventType, setCheckedEventType] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [checkedEventLocation, setCheckedEventLocation] = useState([
+    false,
+    false,
+    false,
+  ]);
+
+  const handleInstitutionCheckboxChange = (event, i) => {
+    checkedInstitution[i] = event.target.checked;
+    let p = [...checkedInstitution];
+    setCheckedInstitution(p);
+  };
+  const handleSponsershipCheckboxChange = (event, i) => {
+    checkedSponserShip[i] = event.target.checked;
+    let p = [...checkedSponserShip];
+    setCheckedSponserShip(p);
+  };
+  const handleRegionCheckboxChange = (event, i) => {
+    checkedRegion[i] = event.target.checked;
+    let p = [...checkedRegion];
+    setCheckedRegion(p);
+  };
+  const handleEventTypeCheckboxChange = (event, i) => {
+    checkedEventType[i] = event.target.checked;
+    let p = [...checkedEventType];
+    setCheckedEventType(p);
+  };
+  const handleEventLocationCheckboxChange = (event, i) => {
+    checkedEventLocation[i] = event.target.checked;
+    let p = [...checkedEventLocation];
+    setCheckedEventLocation(p);
   };
 
   return (
@@ -65,14 +119,16 @@ function selections({ header, state, obj_list }) {
           <span>Institution Type</span>
         </div>
 
-        <div >
+        <div>
           {" "}
-          {institutionTypeData.map((item,idx) => (
+          {institutionTypeData.map((item, idx) => (
             <div key={idx}>
               <input
                 type="checkbox"
-                checked={checked}
-                onChange={handleCheckboxChange}
+                checked={checkedInstitution[idx]}
+                onChange={(event) =>
+                  handleInstitutionCheckboxChange(event, idx)
+                }
               />
               <label htmlFor="">{item}</label>
             </div>
@@ -90,16 +146,22 @@ function selections({ header, state, obj_list }) {
 
         <div>
           {" "}
-          {sponsperTypeData.map((item,idx) => (
+          {sponsperTypeData.map((item, idx) => (
             <div key={idx}>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={checkedSponserShip[idx]}
+                onChange={(event) =>
+                  handleSponsershipCheckboxChange(event, idx)
+                }
+              />
               <label htmlFor="">{item}</label>
             </div>
           ))}
         </div>
       </section>
 
-      <section >
+      <section>
         <div className="row-flex">
           <Icon
             icon={state[0] ? "teenyicons:right-solid" : "teenyicons:down-solid"}
@@ -109,9 +171,13 @@ function selections({ header, state, obj_list }) {
 
         <div>
           {" "}
-          {regionData.map((item,idx) => (
-            <div key ={idx}>
-              <input type="checkbox" />
+          {regionData.map((item, idx) => (
+            <div key={idx}>
+              <input
+                type="checkbox"
+                checked={checkedRegion[idx]}
+                onChange={(event) => handleRegionCheckboxChange(event, idx)}
+              />
               <label htmlFor="">{item}</label>
             </div>
           ))}
@@ -128,9 +194,13 @@ function selections({ header, state, obj_list }) {
 
         <div>
           {" "}
-          {eventType.map((item,idx) => (
+          {eventType.map((item, idx) => (
             <div key={idx}>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={checkedEventType[idx]}
+                onChange={(event) => handleEventTypeCheckboxChange(event, idx)}
+              />
               <label htmlFor="">{item}</label>
             </div>
           ))}
@@ -147,9 +217,15 @@ function selections({ header, state, obj_list }) {
 
         <div>
           {" "}
-          {eventTypeLocation.map((item,idx) => (
+          {eventTypeLocation.map((item, idx) => (
             <div key={idx}>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={checkedEventLocation[idx]}
+                onChange={(event) =>
+                  handleEventLocationCheckboxChange(event, idx)
+                }
+              />
               <label htmlFor="">{item}</label>
             </div>
           ))}
@@ -175,7 +251,6 @@ export default function Filter() {
           state: [a, set_a],
           obj_list: all_types,
         })}
-       
       </div>
     </>
   );
