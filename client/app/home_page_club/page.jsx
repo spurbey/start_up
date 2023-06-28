@@ -3,16 +3,15 @@ import { useState } from "react";
 import Filter from "../components/common/filter";
 import Button from "../components/common/Button";
 
-export const SmallFilter = ()=>{
-
-  return(
+export const SmallFilter = () => {
+  return (
     <>
-    <div className="filter">
-      <div className="header">Filter</div>
-    </div>
+      <div className="filter">
+        <div className="header">Filter</div>
+      </div>
     </>
-  )
-}
+  );
+};
 export const SmallTitleSponserDesc = () => {
   return (
     <>
@@ -21,9 +20,7 @@ export const SmallTitleSponserDesc = () => {
           <div className="first-col">
             <div className="logo-container">
               {/* <img src="" alt="" width={50} height={50}/> */}
-              <div className="logo">
-
-              </div>
+              <div className="logo"></div>
               <div className="posted-by">
                 <p>posted-by</p>
                 {/* photo */}
@@ -71,38 +68,40 @@ export const SmallTitleSponser = ({
 }) => {
   return (
     <div className="card-small-and-desc-container">
-      <section className=" card card-small" onClick={cardHandleClick}>
-        <h3 className="title">Title sponsers</h3>
-        <div className="first-col">
-          <div className="logo-container">
-            {/* <img src="" alt="" width={50} height={50}/> */}
+      <div className="card-small-container">
+        <div className="straight-line"></div>
+        <section className=" card card-small" onClick={cardHandleClick}>
+          <p className="title">Title sponsers</p>
+          <div className="first-col">
+            <div className="logo-container">
+              {/* <img src="" alt="" width={50} height={50}/> */}
+            </div>
+            <p>Ecell Ntr</p>
           </div>
-          <p>Ecell Ntr</p>
-        </div>
-        <div className="second-col">
-          {" "}
-          <h1>Innovision</h1>
-          <div className="slider-container">
-            <input
-              type="range"
-              min="0"
-              max="4"
-              value={sliderValue}
-              className="slider"
-              id="myRange"
-              onChange={handleSliderChange}
-            />
-            
-            <div className="slider-numbers">
-                      <p>1</p>
-                      <p>2</p>
-                      <p>3</p>
-                      <p>4</p>
-                    </div>
+          <div className="second-col">
+            {" "}
+            <h1>Innovision</h1>
+            <div className="slider-container">
+              <input
+                type="range"
+                min="0"
+                max="4"
+                value={sliderValue}
+                className="slider"
+                id="myRange"
+                onChange={handleSliderChange}
+              />
 
+              <div className="slider-numbers">
+                <p>1</p>
+                <p>2</p>
+                <p>3</p>
+                <p>4</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
       <SmallTitleSponserDesc />
     </div>
   );
@@ -117,10 +116,9 @@ export default function HomePageClub() {
   };
 
   const cardHandleClick = (event) => {
-    if(event.currentTarget===event.target){
-    setSponserDetails(()=>!sponserDetails);
+    if (event.currentTarget === event.target) {
+      setSponserDetails(() => !sponserDetails);
     }
-   
   };
   return (
     <>
@@ -147,7 +145,7 @@ export default function HomePageClub() {
           ) : (
             <>
               <section className="card card-large" onClick={cardHandleClick}>
-                <h3 className="title">Title sponsers</h3>
+                <p className="title">Title sponsers</p>
                 <div className="first-col">
                   <div className="logo-container">
                     {/* <img src="" alt="" width={50} height={50}/> */}
@@ -174,7 +172,6 @@ export default function HomePageClub() {
                       <p>3</p>
                       <p>4</p>
                     </div>
-                   
                   </div>
                 </div>
                 <div className="third-col">
