@@ -1,6 +1,7 @@
 import express from "express";
 import authRoutes from "./routes/auth.js";
 import clubRoutes from "./routes/club.js"
+import orgRoutes from "./routes/org.js"
 import testimonyRoutes from "./routes/testimony.js"
 import eventRoutes from "./routes/event.js"
 import cors from "cors";
@@ -38,6 +39,8 @@ app.use("/", clubRoutes)
 app.use("/", testimonyRoutes)
 
 app.use("/", eventRoutes)
+
+app.use("/", orgRoutes)
 
 app.use(cookieParser());
 

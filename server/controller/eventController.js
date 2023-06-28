@@ -113,7 +113,7 @@ export const editEvent = async (req, res, next) => {
 export const removeEvent = async (req, res, next) => {
     try {
         console.log(req)
-        const deleted = Event.findOneAndDelete( req.params.eventBriefId )
+        const deleted = Event.findOneAndDelete( req.eventBriefId )
         if (deleted) {
             res.status(200).json({
                 msg: "Event deleted succcecssfully."

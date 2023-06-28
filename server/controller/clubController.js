@@ -10,7 +10,7 @@ import path from "path"
 export const createClub = async (req, res, next) => {
 
   try {
-    console.log(req.body, req.file);
+    // console.log(req.body, req.file);
 
     const clubCode = "club" + Date.now()
 
