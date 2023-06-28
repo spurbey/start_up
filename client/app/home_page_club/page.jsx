@@ -93,10 +93,22 @@ export const SmallTitleSponser = ({
               />
 
               <div className="slider-numbers">
-                <p>1</p>
-                <p>2</p>
-                <p>3</p>
-                <p>4</p>
+                <div className="one">
+                  <div className="line"></div>
+                  <p>1</p>
+                </div>
+                <div className="two">
+                  <div className="line"></div>
+                  <p>2</p>
+                </div>
+                <div className="three">
+                  <div className="line"></div>
+                  <p>3</p>
+                </div>
+                <div className="four">
+                  <div className="line"></div>
+                  <p>4</p>
+                </div>
               </div>
             </div>
           </div>
@@ -166,12 +178,24 @@ export default function HomePageClub() {
                       id="myRange"
                       onChange={handleSliderChange}
                     />
-                    <div className="slider-numbers">
-                      <p>1</p>
-                      <p>2</p>
-                      <p>3</p>
-                      <p>4</p>
-                    </div>
+                   <div className="slider-numbers">
+                <div className="one">
+                  <div className="line"></div>
+                  <p>1</p>
+                </div>
+                <div className="two">
+                  <div className="line"></div>
+                  <p>2</p>
+                </div>
+                <div className="three">
+                  <div className="line"></div>
+                  <p>3</p>
+                </div>
+                <div className="four">
+                  <div className="line"></div>
+                  <p>4</p>
+                </div>
+              </div>
                   </div>
                 </div>
                 <div className="third-col">

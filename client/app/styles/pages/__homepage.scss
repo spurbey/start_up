@@ -85,7 +85,19 @@
         .slider-numbers {
           width: 50%;
           display: grid;
-          grid-template-columns: 24% 23% 24% 21%;
+          grid-template-columns: 24% 23% 24% 21%;      
+            .one,.two,.three,.four{
+              margin-left:.4rem;
+              .line{
+                width:.2rem;
+                height: .7rem;
+                background-color:$grey;
+              }
+              p{
+                font-size:.9rem;
+              }
+            }
+         
         }
       }
     }
@@ -117,11 +129,22 @@
          
           .slider-container {
             .slider {
-              width: 100%;
+              width: 103%;
             }
             .slider-numbers {
               display: grid;
               grid-template-columns: 24% 23% 24% 21%;
+              .one,.two,.three,.four{
+                margin-left:.2rem;
+                .line{
+                  width:.2rem;
+                  height: .7rem;
+                  background-color:$grey;
+                }
+                p{
+                  font-size:.9rem;
+                }
+              }
             }
           }
         }
