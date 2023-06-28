@@ -1,6 +1,6 @@
 import multer from "multer";
 
-
+//clubs
 const clubPfpStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "../server/uploads/clubPfp")
@@ -20,6 +20,7 @@ const clubFeatureImagesStorage = multer.diskStorage({
     }
 })
 
+//events
 const eventBannerImageStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "../server/uploads/eventBanners")
@@ -27,7 +28,17 @@ const eventBannerImageStorage = multer.diskStorage({
     filename: function (req, file, cb) {
         // console.log(req.body)
         cb(null, "eventBanner_" + req.body?.clubCode + "_" + Date.now() + ".jpeg")
-        
+    }
+})
+
+//orgs
+const orgLogoStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "../server/uploads/orgLogos")
+    },
+    filename: function (req, file, cb) {
+        // console.log(req)
+        cb(null, "orgLogo_" + req.body.orgName + ".jpeg")
     }
 })
 
@@ -56,3 +67,10 @@ export const eventBannerUpload = multer({
     limits: { fileSize: 1024 * 1024 * 4 },
     fileFilter: fileFilter
 }).single("bannerImage")
+
+export const orgLogoUpload = multer({
+    storage: orgLogoStorage,
+    limits: { fileSize: 1024 * 1024 * 4 }, //max file size 4 MB
+    fileFilter: fileFilter
+}).single("orgLogoImage")
+
