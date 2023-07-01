@@ -76,7 +76,7 @@
     .card-large {
       display: grid;
       grid-template-columns: 15% 70% 10%;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: start;
       .slider-container {
         .slider {
@@ -298,10 +298,13 @@
       }
 
       .third-col {
+        display: flex;
+        flex-direction: column;
+        gap:1rem;
+        p {
         background-color: $green;
         border-radius: 20px;
 
-        p {
           margin: 0;
           padding: 0.4rem;
         }
