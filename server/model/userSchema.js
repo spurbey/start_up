@@ -20,6 +20,13 @@ const userSchema = new Schema({
     type:String,
     required:true,
   },
+
+  bookmarks: {
+    type: Array,
+    required: true,
+    default: [],
+  },
+
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 

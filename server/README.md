@@ -7,11 +7,12 @@ Date format: "MM/DD/YYYY 00:00" -> "12/30/2023 24:00"
 
 Store an array with 3 items in DB from postman Body > form-data:
 NO > List1 = [item 1, item 2, item 3]
+
 Yes > List1 = item1
       List1 = item2
       List1 = item3
 
->>> EVENTS API interface <<<
+>>> EVENTS API interface 
 
 ### POST request: 
 >>> create an event
@@ -60,7 +61,7 @@ frequency: 3
 }
 
 --------------------------------------------------------------------------------------
->>> CLUBS API interface <<<
+>>> CLUBS API interface 
 
 ### POST request: 
 >>> register a club:
@@ -119,9 +120,8 @@ GET page 1, 5 results per page:
 }
 
 
---------------------------------------------------------------------------------------
->>> ORGANIZATIONS API interface <<<
-
+---------------------------------------------------------------------------
+>>> ORGANIZATIONS API interface 
 ### POST request: 
 register an organization:
 "http://localhost:<PORT>/orgs"
@@ -180,6 +180,122 @@ GET page 1, 5 results per page:
     "sponsoredEventsIds": "{event1, event2, event3}"
 }
 
---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------
 
-frontend usr instructions:
+>>> Auction/ Bidding API interface 
+
+### Post to Initialize a bidding
+http://localhost:8000/initBid
+POST > body > raw (JSON)
+{
+    "clubCode": "clubDEF",
+    "eventBriefId": "event11111",
+    "biddingStartTime": "09/25/2023 06:00",
+    "biddingEndTime": "06/30/2023 06:00",
+    "minimumSeedAmount": "1000",
+    "incrementAmount": "500"
+}
+response:
+{
+    "data": {
+        "clubCode": "clubDEF",
+        "eventBriefId": "event11111",
+        "biddingStartTime": "2023-09-24T22:00:00.000Z",
+        "biddingEndTime": "2023-06-29T22:00:00.000Z",
+        "isAuctionLive": false,
+        "eta": "87 days 9 hours and 1 minute", 
+        "minimumSeedAmount": 1000,
+        "incrementAmount": 500,
+        "currentTopBid": 0,
+        "createdAt": "2023-06-29T12:56:16.599Z",
+        "updatedAt": "2023-06-29T12:56:16.599Z",
+        "_id": "649d800ec65c9de83701dc81",
+        "__v": 0
+    },
+    "msg": "Bidding detials set up successfully."
+}
+
+### Place a bid 
+http://localhost:8000/placeBid/:event11111
+PUT > Body > raw(JSON)
+{
+    "incrementAmount": "500",
+    "bidPlacingOrgCode": "Org2",
+    "bidPlacedMultiple": "3",    
+    "currentTopBid": "1000",
+    "biddingEndTime": "09/30/2023 06:00",
+    "isAuctionLive": true
+}
+<!-- (use data from POST response from POST request) -->
+
+response:
+{
+    "data": {
+        "_id": "649d89b1c9960c69bc0359e8",
+        "clubCode": "clubDEF",
+        "eventBriefId": "event11111",
+        "biddingStartTime": "2023-06-24T22:00:00.000Z",
+        "biddingEndTime": "2023-09-29T22:00:00.000Z",
+        "isAuctionLive": true,
+        "minimumSeedAmount": 1000,
+        "incrementAmount": 500,
+        "currentTopBid": 10001500,
+        "createdAt": "2023-06-29T13:38:24.495Z",
+        "updatedAt": "2023-06-29T13:38:24.495Z",
+        "__v": 0,
+        "bidPlacedMultiple": 3,
+
+        "bidPlacingOrgCode": "Org2",
+        "biddersAndAmounts": {
+            "Org2": 1500
+        }
+    },
+    "msg": "Placed a bid successfully."
+}
+
+>>> Bookmarks API interface 
+
+### Add a bookmark: 
+http://localhost:<PORT>/bookmarks
+PUT > Body > Raw (JSON)
+<!-- (_id is user's id in the DB) -->
+request: {
+    "_id": "649eb4e528fd5f17de63bac0",  
+    "bookmarks": "event_id_1"
+}
+
+### Get bookmarks list
+http://localhost:<PORT>/bookmarks
+GET > Body > Raw (JSON)
+request:
+{
+    "_id" : "649eb4e528fd5f17de63bac0"
+}
+response:
+{
+    "data": {
+        "_id": "649eb4e528fd5f17de63bac0",
+        "email": "user1@gmail.com",
+        "username": "user1",
+        "password": "$2a$10$aqSmqWvCrVN.P879ja7bhegcSgTDYIZEmJ9Tu4wqLB4Lm5ffnnTvK",
+        "bookmarks": [
+            "event_id_1",
+            "event_id_2",
+            "event_id_3",
+            "event_id_5",
+            "event_id_6"
+        ],
+        "createdAt": "2023-06-30T10:56:37.044Z",
+        "updatedAt": "2023-06-30T10:56:37.044Z",
+        "__v": 0
+    }
+}
+
+### Remove a bookmark
+http://localhost:<PORT>/removeBookmark
+GET > Body > Raw (JSON)
+request:
+{
+    "_id": "649eb4e528fd5f17de63bac0",
+    "bookmarks": "event_id_1"
+}
