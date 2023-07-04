@@ -1,52 +1,329 @@
-.home-page{
-    width:100vw;
-    height: fit-content;
+.home-page {
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+  background-color: $light-pink;
+  align-items: start;
+  .filter {
+    // flex-grow: 1;
+    background-color: $pink;
     display: flex;
-    background-image: $background_gradient;
+    flex-direction: column;
+    align-items: start;
+    padding: 0 2rem;
 
-    .filter{
-        flex-grow: 1;
-        background-color: $pink;
+    .header {
+      border: 1px solid $black;
+      padding: 4px;
+      margin: 4px 0;
+      width: fit-content;
+      font-weight: 600;
+    }
+    section {
+      .row-flex {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        svg {
+          margin: auto;
+        }
+      }
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+
+    div div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    div svg {
+      padding: 2px;
+    }
+
+    div span {
+      padding: 4px;
+      margin: 0 4px;
+    }
+
+    div input {
+      margin-left: 10px;
+      width: 3vw;
+    }
+  }
+
+  .event-bid-card-layout {
+    flex-grow: 3;
+    margin: 1rem 2rem;
+    .search-createEvent-container {
+      display: flex;
+      justify-content: space-between;
+      .homepage-search {
+        height: 3rem;
+        width: 20rem;
+        border-radius: 10px;
+        padding: 1rem;
+      }
+    }
+    .show-events-number {
+      margin: 1rem 0;
+      font-size: 1rem;
+    }
+    .card-large {
+      display: grid;
+      grid-template-columns: 15% 70% 10%;
+      justify-content: space-around;
+      align-items: start;
+      .slider-container {
+        .slider {
+          width: 50%;
+        }
+        .slider-numbers {
+          width: 50%;
+          display: grid;
+          grid-template-columns: 24% 23% 24% 21%;      
+            .one,.two,.three,.four{
+              margin-left:.4rem;
+              .line{
+                width:.2rem;
+                height: .7rem;
+                background-color:$grey;
+              }
+              p{
+                font-size:.9rem;
+              }
+            }
+         
+        }
+      }
+    }
+    .card-small-and-desc-container {
+      display: grid;
+      grid-template-columns: 30% 65%;
+      justify-content: space-around;
+      align-items: start;
+      .card-small-container {
+        display: flex;
+        gap: 0.5rem;
+
+        .straight-line {
+          background-color: blue;
+          width: 0.5rem;
+          border-radius: 1rem;
+          margin: 3.3rem auto 0 auto;
+          height: 8rem;
+          // margin-top:3rem;
+          display: flex;
+          justify-content: center;
+        }
+        .card-small {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 30% 60%;
+          justify-content: space-between;
+          align-items: start;
+         
+          .slider-container {
+            .slider {
+              width: 103%;
+            }
+            .slider-numbers {
+              display: grid;
+              grid-template-columns: 24% 23% 24% 21%;
+              .one,.two,.three,.four{
+                margin-left:.2rem;
+                .line{
+                  width:.2rem;
+                  height: .7rem;
+                  background-color:$grey;
+                }
+                p{
+                  font-size:.9rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    
+
+      .sponserDesc-container {
+        background-color: white;
+        // padding: 2rem;
+
+        .sponser-desc {
+          box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+          padding:2rem;
+          display: grid;
+          grid-template-columns: 40% 50%;
+          justify-content: space-between;
+          padding-bottom: 1rem;
+          .first-col {
+            display: flex;
+            // justify-content: space-around;
+            gap:1rem;
+             
+            .logo-container {
+              .logo {
+                background-color: gray;
+                width: 80px;
+                height: 80px;
+              }
+              .posted-by {
+                p,
+                span {
+                  font-size: 0.8rem;
+                  text-transform: uppercase;
+                }
+                p {
+                  margin: 0;
+                  color:$grey;
+                }
+                span {
+                  text-align: center;
+
+                }
+              }
+            }
+          }
+          .logo-details {
+            span {
+              font-size: 0.8rem;
+            }
+            .socialmedia {
+              display: flex;
+              justify-content: center;
+              gap: 0.2rem;
+              p {
+                margin: 0;
+                font-size: 0.6rem;
+              }
+            }
+          }
+          .second-col {
+            display: grid;
+            grid-template-columns: 45% 45%;
+
+            // justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 0 1rem;
+            // padding: 1rem;
+            button {
+              width: 100%;
+              font-size: 1rem;
+              max-width:10rem;
+            }
+          }
+        }
+        .sponser-about {
+          min-height: 300px;
+          padding:1rem;
+
+          h3{
+            margin:1rem 0;
+          }
+        }
+        .sponser-brochure {
+          padding: 1rem;
+          height: 200px;
+          background-color: gray;
+          text-align: center;
+        }
+      }
+
+      .sponser-about {
+      }
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 1rem;
+      margin: 3rem 0 0 0;
+      padding: 1rem;
+      position: relative;
+      z-index: 0;
+      cursor: pointer;
+      .title {
+        position: absolute;
+        top: -2rem;
+        left: 1rem;
+        background-color: $light-pink;
+        border-radius: 10px;
+        padding: 0.4rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .first-col {
+        .logo-container {
+          background-color: gray;
+          border-radius: 50%;
+          width: 80px;
+          height: 80px;
+          margin: auto;
+        }
+        p {
+          text-align: center;
+          font-size:.8rem;
+        }
+      }
+
+      .second-col {
+        h1 {
+          display: inline-block;
+          margin-right: 1rem;
+        }
+        span {
+          font-size: 0.8rem;
+          color: gray;
+        }
+
+        .slider-container {
+          .slider {
+            -webkit-appearance: none;
+            height: 8px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: 0.2s;
+            transition: opacity 0.2s;
+          }
+
+          .slider:hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      .third-col {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        gap:1rem;
+        p {
+        background-color: $green;
+        border-radius: 20px;
 
-        .header{
-            border: 1px solid $black;
-            padding: 4px;
-            margin: 4px 0;
-            width: fit-content;
-            font-weight: 600;
+          margin: 0;
+          padding: 0.4rem;
         }
-
-        div{
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-        }
-
-        div div{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        div svg{
-            padding: 2px;
-        }
-
-        div span{
-            padding: 4px;
-            margin: 0 4px;
-        }
-
-        div input{
-            margin-left: 10px;
-            width: 3vw;
-        }
+      }
     }
+    .event-tags {
+      text-align: right;
+      margin: 0 0 3rem 0;
 
-    .event-bid-card-layout{
-        flex-grow: 3;
+      span {
+        background-color: $pink;
+        padding: 1rem 0.6rem;
+      }
+      span:nth-child(1) {
+        border-radius: 0 0 0 1rem;
+      }
+      span:nth-child(4) {
+        border-radius: 0 0 1rem 0;
+      }
     }
+  }
 }

@@ -1,16 +1,36 @@
-.notification {
-  @include flex(flex-start);
-  margin: 0 auto;
-  background-color: $yellow;
-  max-width: 800px;
-  padding: 10px 30px;
-  border-radius: 5px;
-  gap: 20px;
-
-  .user-profile {
-    width: 50px;
-    height: 50px;
-    border-radius: 40px;
-    background-color: $light-grey;
-  }
+.notification-container{
+  background-color: $light-pink;
+  height: 100vh;
+ padding:0 1.5rem;
+.notification-title{
+  padding:1rem 0;
+  font-size:2rem;
 }
+  .notification {
+    // @include flex(flex-start);
+    display: grid;
+    grid-template-columns: 7% 90%;
+    justify-content: center;
+    // margin: 1rem auto;
+    margin:1rem 0;
+    max-width: 800px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: white ;
+    gap: 20px;
+    .user-profile {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      background-color: $light-grey;
+    }
+  }
+  .read {
+    background-color: white;
+  }
+  .unread {
+    background-color: $yellow;
+  }
+  
+}
+

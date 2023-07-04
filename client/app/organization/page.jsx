@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+import React from 'react';
+
+export default function OranizationPage() {
+  return <div>OranizationPage</div>;
+}
+=======
 import React from "react";
 import ProfileInfo from "../components/common/ProfileInfo";
 import AboutUs from "../components/common/AboutUs";
@@ -105,3 +112,4 @@ const OrganizationPage = () => {
 };
 
 export default OrganizationPage;
+>>>>>>> 2946175bc7b4ff1066a7455ccf90c4985e8ee805
