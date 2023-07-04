@@ -1,13 +1,16 @@
 import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
 import authRoutes from "./routes/auth.js";
 import clubRoutes from "./routes/club.js"
 import orgRoutes from "./routes/org.js"
 
 import testimonyRoutes from "./routes/testimony.js"
+import bidRoutes from "./routes/auctions.js"
 import eventRoutes from "./routes/event.js"
-import cors from "cors";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
+import bookmarkRoutes from "./routes/bookmarks.js"
 
 const app = express();
 import { connect } from "./db/connect.js";
@@ -33,7 +36,7 @@ app.get("/", (req, res) => {
 // });
 
 //auth Routes
-app.use("/api/auth", authRoutes);
+app.use("/", authRoutes);
 
 app.use("/", clubRoutes)
 
@@ -42,6 +45,10 @@ app.use("/", testimonyRoutes)
 app.use("/", eventRoutes)
 
 app.use("/", orgRoutes)
+
+app.use("/", bidRoutes)
+
+app.use("/", bookmarkRoutes)
 
 app.use(cookieParser());
 

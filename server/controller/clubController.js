@@ -2,9 +2,6 @@
 import Clubs from "../model/clubSchema.js";
 import * as fs from "fs"
 import path from "path"
-// import { getSearchInputTextType } from "../utils/getSearchTextType.js";
-// import { query } from "express";
-
 
 // create a new club
 export const createClub = async (req, res, next) => {
@@ -20,7 +17,7 @@ export const createClub = async (req, res, next) => {
 
     const newReq = { ...req.body, clubcode: clubCode, clubPfpImage: pick}
 
-    const data = await Clubs.create(newReq)
+    const data = await Clubs.findOneAndUpdate(newReq)
 
     if (data) {
       res.status(200).json({
@@ -38,23 +35,6 @@ export const createClub = async (req, res, next) => {
   }
 };
 
-// // get a club's detials by clubname or clubcode 
-// export const getClubDataByClubCodeOrName = async (req, res) => {
-//   const searchInputTextType = getSearchInputTextType(req.body.searchInputText)
-//   // console.log(searchInputTextType)
-
-//   try {
-//     const clubData = await Clubs.findOne({ [searchInputTextType]: req.body.searchInputText })
-//     console.log(clubData)
-//     if (clubData) {
-//       res.json(clubData)
-//     } else {
-//       res.json({
-//         msg: "Error fetching data",
-//       });
-//     }
-//   } catch (error) { next(error) }
-// }
 
 // get a club's detials by clubname or clubcode 
 export const getClubs = async (req, res, next) => {

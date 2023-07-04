@@ -3,19 +3,19 @@ const { Schema } = mongoose;
 
 //question model
 const clubSchema = new Schema({
-    ownerid: {
+    ownerId: {
 
         // about
         type: String,
         required: true,
         unique: true
     },
-    clubcode: {
+    clubCode: {
         type: String,
         required: true,
         unique: true
     },
-    clubname: {
+    clubName: {
         type: String,
         required: true,
     },
