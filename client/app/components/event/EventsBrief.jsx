@@ -20,10 +20,13 @@ const EventBriefs = ({ events }) => {
   return (
     <>
       <div className="EventBriefs">
+        Event Brief
         <Swiper spaceBetween={30} slidesPerView={3}>
           {events.map((event, idx) => (
             <SwiperSlide key={idx}>
+              <br/>
               <EventBrief key={idx} event={event} />
+              <br/>
             </SwiperSlide>
           ))}
         </Swiper>

@@ -53,8 +53,8 @@ function Testimonial({ testimonial }) {
     <>
       <div className='testimonial'>
         <p className='testimonial-message'>
-          {testimonial.message.slice(0, 280)}
-          {testimonial.message.length > 280 && '...'}
+          {testimonial.message.slice(0, 200)}
+          {testimonial.message.length > 200 && '...'}
         </p>
         <h5 className='testimonial__event-title'>{testimonial.eventTitle}</h5>
         <h3 className='testimonial__event-organizer'>
@@ -69,6 +69,7 @@ export default function Testimonials() {
   return (
     <>
       <div className='Testimonials'>
+        Testimonials
         <Swiper spaceBetween={30} slidesPerView={3}>
           {testimonials.map((testimonial, idx) => (
             <SwiperSlide key={idx}>

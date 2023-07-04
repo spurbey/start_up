@@ -64,7 +64,8 @@ const events_best_describe = [
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    localStorage.setItem("event_name",event_name);
+    router.push("/choose_sponsers");
     };
 
 
