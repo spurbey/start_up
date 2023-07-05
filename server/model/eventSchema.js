@@ -3,19 +3,29 @@ const { Schema } = mongoose;
 
 //question model
 const eventSchema = new Schema({
-    ownerId: {
-        type: String,
+
+    isCollab: {
+        type: Boolean,
         required: true,
     },
 
-    clubCode: {
-        type: String,
+    ownerIds: {
+        type: Array,
         required: true,
     },
 
-    clubName: {
-        type: String,
+    clubCodes: {
+        type: Array,
         required: true,
+    },
+
+    clubNames: {
+        type: Array,
+        required: true,
+    },
+
+    collabId: {
+        type: String,
     },
 
     eventBriefId: {
@@ -28,7 +38,7 @@ const eventSchema = new Schema({
         type: String,
         required: true,
     },
-
+    
     eventDate: {
         type: Date,
         required: true,

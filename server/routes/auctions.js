@@ -1,10 +1,10 @@
 import express from "express";
 const router = express.Router();
-import { setUpAuction, placeABid, getBidDetails } from "../controller/auctionsController.js"
+import { setUpAuction, placeABid, getAuctionWinner } from "../controller/auctionsController.js"
 
 router.post("/initAuction", setUpAuction);
 router.put("/placeBid/:eventBriefId", placeABid);
-router.get("/bids/:eventBriefId", getBidDetails);
+router.get("/getWinner", getAuctionWinner);
 
 export default router;
 

@@ -52,20 +52,33 @@ const bidSchema = new Schema({
         required: true,
     },
 
-    //place a bid
-    bidPlacingOrgCode: {
-        type: String,
+    sponsershipType: {
+        type: Array,
+        required: true,
     },
+
+    //place a bid
 
     bidPlacedMultiple: {
         type: Number,
     },
 
+    bidPlacingOrgCode: {
+        type: String,
+    },
+
     // get bid details
-    biddersAndAmounts: {
-        type: Object,
+
+    biddingOrgsList: {
+        type: Array,
         required: true,
-        default: {},
+        default: [],
+    },
+
+    bidAmountsList: {
+        type: Array,
+        required: true,
+        default: [],
     },
 
     currentTopBid: {
@@ -74,15 +87,15 @@ const bidSchema = new Schema({
         default: 0,
     },
 
-    currentTopBidOrgCode: {
+    auctionWinningOrg: {
         type: String,
     },
 
-    winningBidAmount: {
+    auctionWinningBidAmount: {
         type: Number,
     },
 
-    finalWinnerOrgCode: {
+    auctionConcluded: {
         type: Boolean,
     },
 
