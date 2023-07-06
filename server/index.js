@@ -50,6 +50,7 @@ app.use("/", bidRoutes)
 
 app.use("/", bookmarkRoutes)
 
+
 app.use(cookieParser());
 
 const port = process.env.PORT || 8000;

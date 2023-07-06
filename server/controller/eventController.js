@@ -11,13 +11,15 @@ POST request:
 export const postEvent = async (req, res, next) => {
     try {
         console.log(req.body, req.file)
-        const eventBriefId = "event_" + req.body.clubCode + "_" + Date.now()
+        const eventBriefId = "event_" + Date.now()
+
+        const CollabId = "collab_id_" + Date.now();
 
         let fileName = req.file.filename
         
         const pick = fs.readFileSync(path.join("../server/uploads/eventBanners/" + fileName))
         
-        const newReq = { ...req.body, bannerImage: pick, eventBriefId: eventBriefId }
+        const newReq = { ...req.body, bannerImage: pick, eventBriefId: eventBriefId, collabId: CollabId }
 
         const data = await Event.create(newReq);
 

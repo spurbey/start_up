@@ -119,8 +119,8 @@ GET page 1, 5 results per page:
     "Clubname": "TClub1 Ktm",
 }
 
+==================================================================================
 
----------------------------------------------------------------------------
 >>> ORGANIZATIONS API interface 
 ### POST request: 
 register an organization:
@@ -180,7 +180,7 @@ GET page 1, 5 results per page:
     "sponsoredEventsIds": "{event1, event2, event3}"
 }
 
----------------------------------------------------------------------------
+==================================================================================
 
 >>> Auction/ Bidding API interface 
 
@@ -216,17 +216,17 @@ response:
 }
 
 ### Place a bid 
-http://localhost:8000/placeBid/:event11111
+––-
 PUT > Body > raw(JSON)
 {
     "incrementAmount": "500",
     "bidPlacingOrgCode": "Org2",
     "bidPlacedMultiple": "3",    
-    "currentTopBid": "1000",
+    "currentTopBid": "0",
     "biddingEndTime": "09/30/2023 06:00",
     "isAuctionLive": true
 }
-<!-- (use data from POST response from POST request) -->
+<!-- (use data from POST response in auction setup POST request) -->
 
 response:
 {
@@ -239,7 +239,7 @@ response:
         "isAuctionLive": true,
         "minimumSeedAmount": 1000,
         "incrementAmount": 500,
-        "currentTopBid": 10001500,
+        "currentTopBid": 30000,
         "createdAt": "2023-06-29T13:38:24.495Z",
         "updatedAt": "2023-06-29T13:38:24.495Z",
         "__v": 0,
@@ -247,11 +247,14 @@ response:
 
         "bidPlacingOrgCode": "Org2",
         "biddersAndAmounts": {
-            "Org2": 1500
+            "Org2": 1500,
+            "Org6": 30000,
         }
     },
     "msg": "Placed a bid successfully."
 }
+
+==================================================================================
 
 >>> Bookmarks API interface 
 
