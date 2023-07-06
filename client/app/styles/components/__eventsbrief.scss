@@ -1,8 +1,7 @@
 .EventBriefs {
-    background-color: $white;
+    background-color: transparent;
     padding: 40px;
     border-radius: 5px;
-    box-shadow: 0px 1px 5px rbg(0,0,0.5);
 
     .swiper {
         padding: 0 33px;
@@ -30,13 +29,14 @@
 
 .event-brief {
     user-select: none;
-    background-color: $light-pink;
+    background-color: $white;
     padding: 15px 20px;
     border-radius: 7px;
     @include flex(center, flex-start);
     flex-direction: column;
     gap: 10px;
     height: 280px;
+    box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem $light-pink;
 
     &__event-title {
         font-size: 20px;

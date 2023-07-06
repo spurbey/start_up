@@ -1,5 +1,5 @@
 .Testimonials {
-  background-color: $light-pink;
+  background-color: transparant;
   padding: 40px;
   border-radius: 5px;
   .swiper {
@@ -36,6 +36,7 @@
   gap: 10px;
   height: 280px;
   margin:10px;
+  box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem $light-pink;
 
   &__event-title {
     font-size: 20px;
