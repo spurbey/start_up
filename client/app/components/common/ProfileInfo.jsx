@@ -12,6 +12,7 @@ const ProfileInfo = ({
     isVerified = false,
     facebookLink = "https://www.facebook.com/",
     LinkedinLink = "https://www.linkedin.com/",
+    pageEdit = ()=>console.log("Edit")
   }) => {
   return (
     <div className="profile-info">
@@ -53,7 +54,7 @@ const ProfileInfo = ({
               </a>
             )}
           </div>
-          <button className="button button-secondary">Edit Page</button>
+          <button className="button button-secondary" onClick={pageEdit}>Edit Page</button>
         </div>
       </div>
     </div>

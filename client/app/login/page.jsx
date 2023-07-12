@@ -32,7 +32,7 @@ export default function LoginPage() {
       password: ''+authState.password,
     };
     try {
-      const fe = await fetch("http://localhost:8000/api/auth/login",{
+      const fe = await fetch("http://localhost:8000/login",{
         method:"POST",
         headers:{
           "content-type":"application/json",

@@ -10,11 +10,41 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { FaHandshake } from "react-icons/fa";
 import EventBriefs from "../components/event/EventsBrief";
 import Carousel from "../components/common/Carousel";
+import { useUserContext } from "../context/user_context";
+
 
 const ClubPage = () => {
   const height = window.innerHeight;
   const [posx,setposx] = useState(-height*0.8);
   const [oc,setoc] = useState(0.5); 
+  const val = useUserContext();
+  const [editData,setEditData] = useState([]);
+  const [modelOpen,setModelOpen] = useState(true);
+  
+  const pageEdit = async ()=>{
+    if(val.clubCode == "p"){
+      alert("please log in again");
+      return;
+    }
+    
+    setModelOpen(true);
+    try{
+      await fetch("http://localhost:8000/clubs?clubCode="+val.clubCode,{
+          method:"GET"
+        }).then(data=>{
+          if(!data.ok) throw new Error("Not found");
+          return data.json();
+        }).then(data=>{
+            setEditData([data[0].clubCode,data[0].clubName,data[0].about,
+              data[0].facebook,data[0].instagram,data[0].twitter,data[0].linkedin]);
+              setModelOpen(true);
+            // console.log(data);
+            // router.push('/club');
+        });
+    }catch{
+      // alert("wrong password/email");
+    }
+  }
   const profileData = {
     photourl:
       "https://media.licdn.com/dms/image/C4D0BAQERkvt6h7NOvQ/company-logo_200_200/0/1658235706890?e=2147483647&v=beta&t=gUkiYC1fP2wkR2xiyP-Ezol0wGQn8taWb9bXPw6Ypj8",
@@ -22,7 +52,7 @@ const ClubPage = () => {
     name: "Mathematica Club",
     isVerified: true,
     facebookLink: "https://www.facebook.com",
-    linkedinLink: "https://www.linkedin.com",
+    linkedinLink: "https://www.linkedin.com"
   };
   const dummyOrganizers = [
     {
@@ -140,10 +170,102 @@ const ClubPage = () => {
     }
     // console.log(window.scrollY,posx);
   });
+
+  const changeEdit = (e) =>{
+    e.preventDefault();
+    setModelOpen(false);
+    console.log(e.target);
+  }
+
+
   return (
-    <div className="club-page">
+    <div>
+      
+      <div className="club-model" style={{"display":`${modelOpen?"block":"none"}`}}>
+        <div className='LoginPage'>
+          <form className='form-container' onSubmit={changeEdit}>
+            <h3 className='section-title'>Edit Club Page</h3>
+            <div className='input-field'>
+              <label htmlFor='club_name'>
+                Club Name <span className='required'>*</span>
+              </label>
+              <input
+                placeholder=''
+                type='text'
+                id='club_name'
+                value={editData[1]}
+                required
+              />
+            </div>
+            
+            <div className='input-field'>
+              <label htmlFor='club_about'>
+                About <span className='required'>*</span>
+              </label>
+              <input
+                placeholder=''
+                type='text'
+                id='club_about'
+                value={editData[2]}
+                required
+              />
+            </div>
+
+            <div className='input-field'>
+              <label htmlFor='club_facebook'>
+                Facebook 
+              </label>
+              <input
+                placeholder=''
+                type='text'
+                id='club_facebook'
+                value={editData[3]}
+              />
+            </div>
+
+            <div className='input-field'>
+              <label htmlFor='club_instagram'>
+                Instagram 
+              </label>
+              <input
+                placeholder=''
+                type='text'
+                id='club_instagram'
+                value={editData[4]}
+              />
+            </div>
+
+            <div className='input-field'>
+              <label htmlFor='club_twitter'>
+                Twitter 
+              </label>
+              <input
+                placeholder=''
+                type='text'
+                id='club_twitter'
+                value={editData[5]}
+              />
+            </div>
+
+            <div className='input-field'>
+              <label htmlFor='club_linkedin'>
+                LinkedIn
+              </label>
+              <input
+                placeholder=''
+                type='text'
+                id='club_linkedin'
+                value={editData[6]}
+              />
+            </div>
+
+            <button className='button-primary' style={{"padding":"20px"}}>Done</button>
+          </form>
+        </div>
+      </div>
+    <div className="club-page" style={{"display":`${!modelOpen?"block":"none"}`}}>
       <div className="profileinfo">
-        <ProfileInfo data={profileData} />
+        <ProfileInfo data={profileData} pageEdit={pageEdit}/>
         <div className="club-buttons">
           <Button>
             <AiOutlinePlus className="club-icon" /> Create Event
@@ -180,6 +302,7 @@ const ClubPage = () => {
       <div className="organizers">
         <Organizers organizers={dummyOrganizers} />
       </div>
+    </div>
     </div>
   );
 };

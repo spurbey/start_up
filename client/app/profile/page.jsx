@@ -6,10 +6,10 @@ import { BsFillPlusCircleFill } from "react-icons/bs";
 import { useUserContext } from "../context/user_context";
 import DropDown from "../components/common/Dropdown";
 import Button from "../components/common/Button";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const ProfilePage = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [joinedClubs, setJoinedClubs] = useState([]);
   const [headClubs, setHeadClubs] = useState([]);
@@ -17,52 +17,12 @@ const ProfilePage = () => {
   const val = useUserContext();
 
   useEffect(() => {
-    //   // Fetch user data based on username from the backend
-    //   fetchUserData(props.fetchdata)
-    //     .then((userData) => {
-    //       setUser(userData);
-    //       setJoinedClubs(userData.joinedClubs);
-    //       setHeadClubs(userData.headClubs);
-    //     })
-    //     .catch((error) => console.error(error));
-    console.log("Profile", val.email);
     const p = {
-      username: val.userName, //localStorage.getItem("username"),
-      email: val.email, //localStorage.getItem("email"),
+      username: val.userName,
+      email: val.email,
     };
-    // console.log(localStorage.getItem("email"));
     setUser(p);
-    // router.push("/login");
   }, []);
-
-  // const fetchUserData = (fetch_data) => {
-  //   // Make an HTTP request to your backend API to fetch user data
-  //   return fetch(`http://localhost:8000/api/login`,{
-  //     method:"POST",
-  //     headers:{
-  //       "content-type":"application/json",
-  //     },
-  //     body:JSON.stringify({
-  //       email:fetch_data.email,
-  //       password:fetch_data.password
-  //     })
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch user data");
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       return {
-  //         name: data.email,
-  //         username: data.username,
-  //         profilePicUrl: data.profilePicUrl,
-  //         joinedClubs: data.joinedClubs, // Assuming the backend provides an array of joined clubs
-  //         headClubs: data.headClubs, // Assuming the backend provides an array of head clubs
-  //       };
-  //     });
-  // };
 
   if (!user) {
     return <div>Loading...</div>;
@@ -70,6 +30,49 @@ const ProfilePage = () => {
   const profilePicUrl =
     user.profilePicUrl ||
     "https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png";
+
+  const createClub = async ()=>{
+    if(val.email == "p"){
+      alert("please log in again");
+      return;
+    }
+    const credential = {
+          "ownerId": val.email,
+          "clubName": "ABC club",
+          "about": "This is a club."
+      };
+    try {
+      await fetch("http://localhost:8000/createClub",{
+        method:"POST",
+        headers:{
+          "content-type":"application/json",
+        },
+        body:JSON.stringify(credential)
+      }).then(data=>{
+        // console.log(data);
+        if(!data.ok) throw new Error("Not found");
+        return data.json();
+      }).then(data=>{
+          val.setClubCode(data.data.clubCode);
+          router.push('/club');
+      })
+    }catch{
+      try{
+        await fetch("http://localhost:8000/clubs?ownerId="+val.email,{
+          method:"GET"
+        }).then(data=>{
+          // console.log(data);
+          if(!data.ok) throw new Error("Not found");
+          return data.json();
+        }).then(data=>{
+            val.setClubCode(data[0].clubCode);
+            router.push('/club');
+        })
+      }catch{
+        console.log("Still didn't work")
+      }
+    }
+  }
 
   return (
     <div className="profile">
@@ -96,7 +99,7 @@ const ProfilePage = () => {
             </span>
           </div>
           <div className="create-club-organization">
-            <Button className="button-primary">
+            <Button className="button-primary" handleClick={createClub}>
               <BsFillPlusCircleFill className="p-icon" />
               Create Club/Organization
             </Button>

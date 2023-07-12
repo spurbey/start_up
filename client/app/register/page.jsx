@@ -42,7 +42,7 @@ export default function RegisterPage() {
 
     // console.log("register",val.email);
     // let d;
-    const fe = await fetch("http://localhost:8000/api/auth/register",{
+    const fe = await fetch("http://localhost:8000/register",{
       method:"POST",
       headers:{
         "content-type":"application/json",

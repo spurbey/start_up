@@ -12,7 +12,6 @@ const clubSchema = new Schema({
     },
     clubCode: {
         type: String,
-        required: true,
         unique: true
     },
     clubName: {

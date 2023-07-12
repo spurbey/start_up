@@ -12,16 +12,18 @@ export const createClub = async (req, res, next) => {
     const clubCode = "club" + Date.now()
 
     // Profile picture
-    let fileName = req.file.filename
-    const pick = fs.readFileSync(path.join("../server/uploads/clubPfp/" + fileName))
+    // let fileName = req.file.filename
+    // const pick = fs.readFileSync(path.join("../server/uploads/clubPfp/" + fileName))
 
-    const newReq = { ...req.body, clubcode: clubCode, clubPfpImage: pick}
+    const newReq = { ...req.body};
+    newReq.clubCode = clubCode;
 
-    const data = await Clubs.findOneAndUpdate(newReq)
+    const data = await Clubs.create(newReq)
 
     if (data) {
       res.status(200).json({
-        msg: "Club registered successfully!"
+        msg: "Club registered successfully!",
+        data
       })
       console.log("Club registered successfully")
     } else {
@@ -41,21 +43,29 @@ export const getClubs = async (req, res, next) => {
   try {
   //filer
     const queryObj = {...req.query}
-    const excludeFields = ["page", "sort", "limit", "fields", "skip"]
+    const excludeFields = ["page", "sort","ownerId", "limit", "fields", "skip"]
     excludeFields.forEach(el => delete queryObj[el])
 
     //sort
     const sortBy = req.query.sortBy
-    console.log(queryObj, req.query.sort)
+    console.log(queryObj, req.query)
 
     //pagination
     const page = req.query.page
     const limit = req.query.limit
     const skip = (page - 1) * limit
+    const ownerId = req.query.ownerId;
+    const clubCode = req.query.clubCode;
 
-    const clubs = await Clubs.find(queryObj).sort(sortBy).skip(skip).limit(limit)
-  
-    console.log(clubs)
+    let clubs = null;
+    if(ownerId != undefined){
+      clubs = await Clubs.find({ownerId:ownerId});
+    }else if(clubCode != undefined){
+      clubs = await Clubs.find({clubCode:clubCode});
+    }else{
+      clubs = await Clubs.find(queryObj).sort(sortBy).skip(skip).limit(limit)
+    }
+    // console.log(clubs)
     if (clubs) {
       res.status(200).json(clubs)
     } else {
