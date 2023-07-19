@@ -4,16 +4,11 @@ import { VscOrganization } from "react-icons/vsc";
 import { BsFacebook } from "react-icons/bs";
 import { AiFillLinkedin } from "react-icons/ai";
 
-const ProfileInfo = ({
-    //default value
-    photourl,
-    isOrganization = false,
-    name = "John Doe",
-    isVerified = false,
-    facebookLink = "https://www.facebook.com/",
-    LinkedinLink = "https://www.linkedin.com/",
-    pageEdit = ()=>console.log("Edit")
-  }) => {
+const ProfileInfo = (props) => {
+    const {name,isVerified,facebookLink,LinkedinLink,twitterLink,instagramLink,isOrganization} = props.data;
+    const photourl = null;
+    const pageEdit = props.pageEdit;
+    // console.log(props);
   return (
     <div className="profile-info">
       <div className="profile-photo">

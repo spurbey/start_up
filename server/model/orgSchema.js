@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
-
+ 
 const orgSchema = new Schema({
 
     orgName: {
@@ -11,12 +11,12 @@ const orgSchema = new Schema({
     orgCode: {
         type: String,
         unique: true,
-        required: true,
     },
 
     ownerId: {
         type: String,
         required: true,
+        unique: true
     },
 
     orgLogoImage: {

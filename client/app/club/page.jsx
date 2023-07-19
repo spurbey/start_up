@@ -12,14 +12,11 @@ import EventBriefs from "../components/event/EventsBrief";
 import Carousel from "../components/common/Carousel";
 import { useUserContext } from "../context/user_context";
 
-
 const ClubPage = () => {
-  const height = window.innerHeight;
-  const [posx,setposx] = useState(-height*0.8);
-  const [oc,setoc] = useState(0.5); 
   const val = useUserContext();
   const [editData,setEditData] = useState([]);
-  const [modelOpen,setModelOpen] = useState(true);
+  const [modelOpen,setModelOpen] = useState(false);
+  const [profileData,setProfileData] = useState([]);
   
   const pageEdit = async ()=>{
     if(val.clubCode == "p"){
@@ -36,7 +33,7 @@ const ClubPage = () => {
           return data.json();
         }).then(data=>{
             setEditData([data[0].clubCode,data[0].clubName,data[0].about,
-              data[0].facebook,data[0].instagram,data[0].twitter,data[0].linkedin]);
+              data[0].facebook,data[0].instagram,data[0].twitter,data[0].linkedin,data[0]._id]);
               setModelOpen(true);
             // console.log(data);
             // router.push('/club');
@@ -45,47 +42,13 @@ const ClubPage = () => {
       // alert("wrong password/email");
     }
   }
-  const profileData = {
-    photourl:
-      "https://media.licdn.com/dms/image/C4D0BAQERkvt6h7NOvQ/company-logo_200_200/0/1658235706890?e=2147483647&v=beta&t=gUkiYC1fP2wkR2xiyP-Ezol0wGQn8taWb9bXPw6Ypj8",
-    isOrganization: false,
-    name: "Mathematica Club",
-    isVerified: true,
-    facebookLink: "https://www.facebook.com",
-    linkedinLink: "https://www.linkedin.com"
-  };
-  const dummyOrganizers = [
+  const [dummyOrganizers,setDummyOrganizers] = useState([
     {
       name: "John Doe",
       profilePhoto: "",
       post: "President",
-    },
-    {
-      name: "Jane Smith",
-      profilePhoto: "",
-      post: "Vice President",
-    },
-    {
-      name: "Jane Smith",
-      profilePhoto: "",
-      post: "Vice President",
-    },
-    {
-      name: "Jane Smith",
-      profilePhoto: "",
-      post: "Vice President",
-    },
-    {
-      name: "Jane Smith",
-      profilePhoto: "",
-      post: "Vice President",
-    },
-    {
-      name: "Jane Smith",
-      profilePhoto: "",
-      post: "Vice President",
-    },
-  ];
+    }
+  ]);
   const images = [
     {
       imageUrl:
@@ -114,17 +77,6 @@ const ClubPage = () => {
       eventTitle: "Event 1",
       eventOrganizer: "Organizer 1",
     },
-    {
-      message: "Nulla facilisi. Sed at velit dapibus, fermentum odio eu.",
-      eventTitle: "Event 2",
-      eventOrganizer: "Organizer 2",
-    },
-    {
-      message:
-        "Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu.",
-      eventTitle: "Event 3",
-      eventOrganizer: "Organizer 3",
-    },
   ];
 
   const eventsBrief = [
@@ -133,18 +85,6 @@ const ClubPage = () => {
       eventTitle: "Event 1",
       eventOrganizer: "Organizer 1",
     },
-    {
-      message:
-        "Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu.",
-      eventTitle: "Event 2",
-      eventOrganizer: "Organizer 2",
-    },
-    {
-      message:
-        "Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu. Nulla facilisi. Sed at velit dapibus, fermentum odio eu.",
-      eventTitle: "Event 3",
-      eventOrganizer: "Organizer 3",
-    },
   ];
 
   const joined = "2022-01-01";
@@ -152,32 +92,91 @@ const ClubPage = () => {
   const bidsWon = 10;
   const bidsParticipated = 20;
 
-  const aboutUsContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consequat vestibulum augue, eu semper lectus dignissim ac. Fusce vel malesuada massa, sed malesuada felis. Aliquam fermentum sem a ex pellentesque, eget eleifend elit volutpat. Sed dapibus efficitur tristique.";
+  const [aboutUsContent,setAboutUsContent] =
+    useState("Lorem ipsum entum sem a ex pellentesque, eget eleifend elit volutpat. Sed dapibus efficitur tristique.");
   
-  window.addEventListener("wheel",(event)=>{
-    if(window.scrollY === 0){
-      setposx((-height*0.8));
-      setoc(0.5);
+  // window.addEventListener("wheel",(event)=>{
+  //   if(window.scrollY === 0){
+  //     setposx((-height*0.8));
+  //     setoc(0.5);
+  //   }
+  //   else if(window.scrollY >= 350 ){
+  //     setposx(0);
+  //     setoc(0);
+  //   }
+  //   else {
+  //     setposx(posx+event.deltaY);
+  //     setoc(-window.scrollY/700+0.5);
+  //   }
+  //   // console.log(window.scrollY,posx);
+  // });
+  async function load(){
+    try{
+     await fetch("http://localhost:8000/clubs?clubCode="+val.clubCode,{
+        method:"GET"
+      }).then(data=>{
+        if(!data) throw new Error("Not found");
+        return data.json();
+      }).then(data=>{
+          let p2 = [data[0].clubName,data[0].verified,data[0].facebook || " ",data[0].linkedin || " "
+          ,data[0].twitter || " ",data[0].instagram || " ",data[0].clubCode];
+          // const p2 = {name:profileData.name, isVerified:profileData.isVerified,facebookLink:profileData.facebookLink
+          // ,linkedinLink:profileData.linkedinLink,instagramLink:profileData.instagramLink,twitterLink:profileData.twitterLink};
+          
+          // console.log(data,p2);
+          setProfileData(p2);
+          setAboutUsContent(data[0].about);
+          console.log("\n1: ",profileData,aboutUsContent)
+      });
+    }catch{
+      // alert("wrong password/email");
     }
-    else if(window.scrollY >= 350 ){
-      setposx(0);
-      setoc(0);
-    }
-    else {
-      setposx(posx+event.deltaY);
-      setoc(-window.scrollY/700+0.5);
-    }
-    // console.log(window.scrollY,posx);
-  });
-
-  const changeEdit = (e) =>{
-    e.preventDefault();
-    setModelOpen(false);
-    console.log(e.target);
   }
 
+  const changeEdit = async (e) =>{
+    e.preventDefault();
+    setModelOpen(false);
+    const c = e.target.querySelectorAll("input");
+    const cname = c[0].value;
+    const cabout = c[1].value;
+    const cfb = c[2].value;
+    const cins = c[3].value;
+    const ctw = c[4].value;
+    const cln = c[5].value;
+    try{
+      await fetch("http://localhost:8000/clubs",{
+          method:"PUT",
+          headers:{
+            "content-type": "application/json"
+          },
+          body: JSON.stringify({
+            _id: editData[7],//"64ae8ee090e6dd708b34f3b3",//editData[7],
+            clubName:cname,
+            about:cabout,
+            facebook:cfb,
+            instagram:cins,
+            twitter:ctw,
+            linkedin:cln
+          })
+        }).then(data=>{
+          if(!data) throw new Error("Not found");
+          // console.log("kelek")
+          return data.json();
+        }).then(async data=>{
+            setTimeout(await load(),1000);
+        });
+    }catch{
+      // alert("wrong password/email");
+    }
+    // console.log(c[0],cname);
+  }
 
+  (async()=>{
+    if(profileData.length == 0){
+      setTimeout(await load(),1000);
+    }
+  })();
+  // console.log(profileData,aboutUsContent)
   return (
     <div>
       
@@ -194,6 +193,11 @@ const ClubPage = () => {
                 type='text'
                 id='club_name'
                 value={editData[1]}
+                onChange={e=>{
+                  const c = e.target.value;
+                  const p = [editData[0],c,editData[2],editData[3],editData[4],editData[5],editData[6],editData[7]];
+                  setEditData(p);
+                }}
                 required
               />
             </div>
@@ -207,6 +211,11 @@ const ClubPage = () => {
                 type='text'
                 id='club_about'
                 value={editData[2]}
+                onChange={e=>{
+                  const c = e.target.value;
+                  const p = [editData[0],editData[1],c,editData[3],editData[4],editData[5],editData[6],editData[7]];
+                  setEditData(p);
+                }}
                 required
               />
             </div>
@@ -219,7 +228,11 @@ const ClubPage = () => {
                 placeholder=''
                 type='text'
                 id='club_facebook'
-                value={editData[3]}
+                value={editData[3]}onChange={e=>{
+                  const c = e.target.value;
+                  const p = [editData[0],editData[1],editData[2],c,editData[4],editData[5],editData[6],editData[7]];
+                  setEditData(p);
+                }}
               />
             </div>
 
@@ -232,6 +245,11 @@ const ClubPage = () => {
                 type='text'
                 id='club_instagram'
                 value={editData[4]}
+                onChange={e=>{
+                  const c = e.target.value;
+                  const p = [editData[0],editData[1],editData[2],editData[3],c,editData[5],editData[6],editData[7]];
+                  setEditData(p);
+                }}
               />
             </div>
 
@@ -244,6 +262,11 @@ const ClubPage = () => {
                 type='text'
                 id='club_twitter'
                 value={editData[5]}
+                onChange={e=>{
+                  const c = e.target.value;
+                  const p = [editData[0],editData[1],editData[2],editData[3],editData[4],c,editData[6],editData[7]];
+                  setEditData(p);
+                }}
               />
             </div>
 
@@ -256,6 +279,11 @@ const ClubPage = () => {
                 type='text'
                 id='club_linkedin'
                 value={editData[6]}
+                onChange={e=>{
+                  const c = e.target.value;
+                  const p = [editData[0],editData[1],editData[2],editData[3],editData[4],editData[5],c,editData[7]];
+                  setEditData(p);
+                }}
               />
             </div>
 
@@ -265,7 +293,8 @@ const ClubPage = () => {
       </div>
     <div className="club-page" style={{"display":`${!modelOpen?"block":"none"}`}}>
       <div className="profileinfo">
-        <ProfileInfo data={profileData} pageEdit={pageEdit}/>
+        <ProfileInfo data={profileData.length==0?{isOrganization:false}:{name:profileData[0],isVerified:profileData[1],facebookLink:profileData[2],
+        instagramLink:profileData[5],linkedinLink:profileData[3],twitterLink:profileData[4],isOrganization:false}} pageEdit={pageEdit}/>
         <div className="club-buttons">
           <Button>
             <AiOutlinePlus className="club-icon" /> Create Event

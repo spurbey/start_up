@@ -3,9 +3,9 @@ const router = express.Router();
 import {regOrg, getOrgs, editOrg, removeOrg} from "../controller/orgController.js"
 import { orgLogoUpload } from "../middlewares/imageUpload.js";
 
-router.post("/orgs",orgLogoUpload, regOrg);
+router.post("/orgs", regOrg);
 router.get("/orgs", getOrgs);
 router.put("/orgs/:orgCode", orgLogoUpload, editOrg);
-router.delete("/orgs/:orgCode", removeOrg);
+router.delete("/orgs/:orgCode", removeOrg); 
 
 export default router;

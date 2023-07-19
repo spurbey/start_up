@@ -74,6 +74,50 @@ const ProfilePage = () => {
     }
   }
 
+
+  const createOrg = async ()=>{
+    if(val.email == "p"){
+      alert("please log in again");
+      return;
+    }
+    const credential = {
+          "ownerId": val.email,
+          "orgName": "ABC org",
+          "about": "This is a club."
+      };
+    try {
+      await fetch("http://localhost:8000/orgs",{
+        method:"POST",
+        headers:{
+          "content-type":"application/json",
+        },
+        body:JSON.stringify(credential)
+      }).then(data=>{
+        if(!data) throw new Error("Not found");
+        return data.json();
+      }).then(data=>{
+          // console.log(data);
+          val.setOrgCode(data.data.orgCode);
+          router.push('/organization');
+      })
+    }catch{
+      try{
+        await fetch("http://localhost:8000/orgs?ownerId="+val.email,{
+          method:"GET"
+        }).then(data=>{
+          // console.log(data);
+          if(!data) throw new Error("Not found");
+          return data.json();
+        }).then(data=>{
+            val.setOrgCode(data[0].orgCode);
+            router.push('/organization');
+        })
+      }catch{
+        console.log("Still didn't work")
+      }
+    }
+  }
+
   return (
     <div className="profile">
       <div className="profile-header">
@@ -101,7 +145,14 @@ const ProfilePage = () => {
           <div className="create-club-organization">
             <Button className="button-primary" handleClick={createClub}>
               <BsFillPlusCircleFill className="p-icon" />
-              Create Club/Organization
+              Create Club
+            </Button>
+          </div>
+          <br/>
+          <div className="create-club-organization">
+            <Button className="button-primary" handleClick={createOrg}>
+              <BsFillPlusCircleFill className="p-icon" />
+              Create Organization
             </Button>
           </div>
         </div>

@@ -8,16 +8,17 @@ export const regOrg = async(req, res) => {
     try {
         const orgCode = "org_"+ Date.now();
 
-        const pick = fs.readFileSync(path.join("../server/uploads/orgLogos/" + req.file.filename))
+        // const pick = fs.readFileSync(path.join("../server/uploads/orgLogos/" + req.file.filename))
 
-        const newReq = {...req.body, orgCode: orgCode, orgLogoImage: pick}
+        const newReq = {...req.body, orgCode: orgCode}
 
         const data = await Orgs.create(newReq)
 
         if(data){
             console.log(data);
             res.status(200).json({
-                msg: "Organization registered successfully."
+                msg: "Organization registered successfully.",
+                data
             });
         }else(
             res.status(401).json({
@@ -45,9 +46,20 @@ export const getOrgs = async(req, res) => {
          const page = req.query.page
          const limit = req.query.limit
          const skip = (page - 1) * limit
-         console.log(page, limit, skip)
- 
-         const orgs = await Orgs.find(queryObj).sort(sortBy).skip(skip).limit(limit)
+         const ownerId = req.query.ownerId;
+         const orgCode = req.query.orgCode;
+        //  console.log(queryObj,req.query,orgCode,page, limit, skip)
+        
+         let orgs = null;
+        if(ownerId != undefined){
+        orgs = await Orgs.find({ownerId:ownerId});
+        }else if(orgCode != undefined){
+        orgs = await Orgs.find({orgCode:orgCode});
+        // console.log({orgCode:orgCode},orgs)
+        }else{
+        orgs = await Orgs.find(queryObj).sort(sortBy).skip(skip).limit(limit)
+        }
+        //  const orgs = await Orgs.find(queryObj).sort(sortBy).skip(skip).limit(limit)
 
         if (orgs){
             res.status(200).json({
