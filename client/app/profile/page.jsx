@@ -1,9 +1,9 @@
-"use client";
+'use client';
+
 import React, { useState, useEffect } from "react";
 import { AiFillMessage } from "react-icons/ai";
 import { IoMdNotifications } from "react-icons/io";
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { useUserContext } from "../context/user_context";
 import DropDown from "../components/common/Dropdown";
 import Button from "../components/common/Button";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,11 @@ const ProfilePage = () => {
   const [joinedClubs, setJoinedClubs] = useState([]);
   const [headClubs, setHeadClubs] = useState([]);
 
-  const val = useUserContext();
+  const val = {};
+  if (typeof window !== 'undefined'){
+    val.userName = window.localStorage.getItem("_userName");
+    val.email = window.localStorage.getItem("_email");
+  }
 
   useEffect(() => {
     const p = {
@@ -32,7 +36,7 @@ const ProfilePage = () => {
     "https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png";
 
   const createClub = async ()=>{
-    if(val.email == "p"){
+    if(val.email == undefined || val.email == null){
       alert("please log in again");
       return;
     }
@@ -53,7 +57,8 @@ const ProfilePage = () => {
         if(!data.ok) throw new Error("Not found");
         return data.json();
       }).then(data=>{
-          val.setClubCode(data.data.clubCode);
+          val.clubCode = data[0].clubCode;
+          localStorage.setItem("_clubcode",data[0].clubCode);
           router.push('/club');
       })
     }catch{
@@ -65,11 +70,12 @@ const ProfilePage = () => {
           if(!data.ok) throw new Error("Not found");
           return data.json();
         }).then(data=>{
-            val.setClubCode(data[0].clubCode);
+          val.clubCode = data[0].clubCode;
+          localStorage.setItem("_clubcode",data[0].clubCode);
             router.push('/club');
         })
-      }catch{
-        console.log("Still didn't work")
+      }catch(e){
+        console.log(e,"Still didn't work")
       }
     }
   }
@@ -97,7 +103,8 @@ const ProfilePage = () => {
         return data.json();
       }).then(data=>{
           // console.log(data);
-          val.setOrgCode(data.data.orgCode);
+            val.orgCode = data[0].orgCode;
+            localStorage.setItem("_orgcode",data[0].orgCode);
           router.push('/organization');
       })
     }catch{
@@ -109,7 +116,8 @@ const ProfilePage = () => {
           if(!data) throw new Error("Not found");
           return data.json();
         }).then(data=>{
-            val.setOrgCode(data[0].orgCode);
+            val.orgCode = data[0].orgCode;
+            localStorage.setItem("_orgcode",data[0].orgCode);
             router.push('/organization');
         })
       }catch{

@@ -10,16 +10,22 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { FaHandshake } from "react-icons/fa";
 import EventBriefs from "../components/event/EventsBrief";
 import Carousel from "../components/common/Carousel";
-import { useUserContext } from "../context/user_context";
 
 const ClubPage = () => {
-  const val = useUserContext();
+  const val = {};
   const [editData,setEditData] = useState([]);
   const [modelOpen,setModelOpen] = useState(false);
   const [profileData,setProfileData] = useState([]);
   
+  if (typeof window !== 'undefined'){
+    val.userName = localStorage.getItem("_userName");
+    val.email = localStorage.getItem("_email");
+    val.clubCode = localStorage.getItem("_clubcode");
+  }
+
   const pageEdit = async ()=>{
-    if(val.clubCode == "p"){
+    
+    if(val.clubCode == undefined || val.clubCode == null){
       alert("please log in again");
       return;
     }
@@ -126,7 +132,6 @@ const ClubPage = () => {
           // console.log(data,p2);
           setProfileData(p2);
           setAboutUsContent(data[0].about);
-          console.log("\n1: ",profileData,aboutUsContent)
       });
     }catch{
       // alert("wrong password/email");
@@ -317,9 +322,9 @@ const ClubPage = () => {
           />
         </div>
       </div>
-      <div className="container-carousel" style={{"top":`${posx+"px"}`}}>
+      <div className="container-carousel">
         {/* <h1>Sliding Image Carousel</h1> */}
-        <Carousel images={images} oc={oc}/>
+        <Carousel images={images} />
       </div>
       
       <div className="events-brief">

@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useEffect, useReducer, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { useUserContext } from '../context/user_context';
 import { useRouter } from 'next/navigation';
 
 export default function RegisterPage() {
@@ -24,7 +23,6 @@ export default function RegisterPage() {
   const [dispalyEyeIcon, setDisplayEyeIcon] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const val = useUserContext();
 
   useEffect(() => {
     setDisplayEyeIcon(authState.password.length > 0);
@@ -49,10 +47,14 @@ export default function RegisterPage() {
        },
       body:JSON.stringify(credential)
     }).then(data=>data.text().then(data=>{
-      val.setUserName(data.username);
-      val.setEmail(data.email);
+
+      localStorage.setItem("_userName",val.userName);
+      localStorage.setItem("_email",val.email);
+      localStorage.setItem("_clubcode",val.clubcode);
+      localStorage.setItem("_orgcode",val.orgcode);
     }));
     // console.log(d);
+    
     router.push("/login");
     // console.log(credential);
   };

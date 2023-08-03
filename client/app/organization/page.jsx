@@ -118,8 +118,14 @@ const OrganizationPage = () => {
   const [modelOpen,setModelOpen] = useState(false);
   const [profileData,setProfileData] = useState([]);
   
+
+  val.userName = localStorage.setItem("_userName");
+  val.email = localStorage.setItem("_email");
+  val.orgCode = localStorage.setItem("_orgcode");
+
   const pageEdit = async ()=>{
-    if(val.orgCode == "p"){
+    
+    if(val.orgCode == undefined || val.orgCode == null){
       alert("please log in again");
       return;
     }
